@@ -39,3 +39,7 @@
 - Tạo `API Endpoints` - tạo file theo đường dẫn `src/app/api/auth/[kindeAuth]/route.js`
 
 - Sử dụng theo hướng dẫn của [Kinde Docs](https://docs.kinde.com/developer-tools/sdks/backend/nextjs-sdk/)
+
+#####
+
+Test tạo Branch bằng Git
