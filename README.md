@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# About Project
 
-## Getting Started
+## Sử dụng Package Manager `pnpm`
 
-First, run the development server:
+- Lệnh khởi tạo dự án với [Next.js](https://nextjs.org/docs/app/api-reference/cli/create-next-app) - `pnpm dlx create-next-app@latest`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Lệnh chạy dự án - `pnpm run dev`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Các Package sử dụng
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. [shadcn/ui](https://ui.shadcn.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Lệnh cài đặt gói - `pnpm dlx shadcn@latest init`
 
-## Learn More
+- Lệnh cài đặt thêm gói [Component Button](https://ui.shadcn.com/docs/components/button) - `pnpm dlx shadcn@latest add button`
 
-To learn more about Next.js, take a look at the following resources:
+- Cách thêm [Theme](https://ui.shadcn.com/themes) - copy và paste đoạn code vào file `globals.css` vị trí `@layer base`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Chú ý, riêng với `Tailwind V4` (bản mới nhất), đây là cách thêm [Theme](https://ui.shadcn.com/docs/tailwind-v4) vào dự án
+  - Move `:root` and `.dark` out of the `@layer base`
+  - Wrap the color values in `hsl()`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. [Lucide](https://lucide.dev/)
 
-## Deploy on Vercel
+- Lệnh cài đặt gói - `pnpm install lucide-react`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Các Service sử dụng
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. [Kinde](https://kinde.com/)
+
+- Các bước chuẩn bị:
+  - Step 1: Thiết đặt Business
+  - Step 2: Thiết đặt Applications (My NextJS App | Back-end web)
+
+- Lệnh cài đặt gói - `pnpm install @kinde-oss/kinde-auth-nextjs`
+
+- Cập nhập `Environment Vars` - tạo file `.env` đặt vào vị trí *"root"* của dự án
+
+- Tạo `API Endpoints` - tạo file theo đường dẫn `src/app/api/auth/[kindeAuth]/route.js`
+
+- Sử dụng theo hướng dẫn của [Kinde Docs](https://docs.kinde.com/developer-tools/sdks/backend/nextjs-sdk/)
