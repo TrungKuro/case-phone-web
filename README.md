@@ -24,17 +24,22 @@
 
 - Lệnh cài đặt gói - `pnpm install lucide-react`
 
+### 3. [Framer Motion](https://www.npmjs.com/package/framer-motion)
+
+- Lệnh cài đặt gói - `pnpm install framer-motion`
+
 ## Các Service sử dụng
 
 ### 1. [Kinde](https://kinde.com/)
 
 - Các bước chuẩn bị:
+
   - Step 1: Thiết đặt Business
   - Step 2: Thiết đặt Applications (My NextJS App | Back-end web)
 
 - Lệnh cài đặt gói - `pnpm install @kinde-oss/kinde-auth-nextjs`
 
-- Cập nhập `Environment Vars` - tạo file `.env` đặt vào vị trí *"root"* của dự án
+- Cập nhập `Environment Vars` - tạo file `.env` đặt vào vị trí _"root"_ của dự án
 
 - Tạo `API Endpoints` - tạo file theo đường dẫn `src/app/api/auth/[kindeAuth]/route.js`
 

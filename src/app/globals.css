@@ -130,3 +130,56 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ----------------------------- CUSTOM ANIMATE ---------------------------- */
+
+/* Định nghĩa animation marquee (chạy liên tục) */
+@keyframes marquee {
+  100% {
+    transform: translateY(-50%);
+    /* 
+      - Di chuyển phần tử theo trục Y lên trên 50% chiều cao của nó.
+      - Vì không có trạng thái `0%`, animation bắt đầu từ vị trí hiện tại.
+    */
+  }
+}
+
+@layer utilities {
+  /* Tạo một utility class để áp dụng animation marquee */
+  .animate-marquee {
+    animation: marquee var(--marquee-duration) linear infinite;
+    /* 
+      - marquee: sử dụng keyframes đã định nghĩa ở trên.
+      - var(--marquee-duration): thời gian chạy animation (do CSS variable điều chỉnh).
+      - linear: tốc độ di chuyển không đổi, giúp tạo hiệu ứng mượt.
+      - infinite: animation chạy lặp vô hạn.
+    */
+  }
+}
+
+/* ---------------------------------- ... ---------------------------------- */
+
+/* Định nghĩa animation fade-in */
+@keyframes fade-in {
+  from {
+    opacity: 0; /* Bắt đầu với opacity = 0 (ẩn hoàn toàn) */
+  }
+  to {
+    opacity: 1; /* Kết thúc với opacity = 1 (hiển thị hoàn toàn) */
+  }
+}
+
+@layer utilities {
+  /* Tạo một utility class để sử dụng animation fade-in */
+  .animate-fade-in {
+    animation: fade-in 0.5s linear forwards;
+    /* 
+      - fade-in: sử dụng keyframes đã định nghĩa
+      - 0.5s: thời gian chạy animation là 0.5 giây
+      - linear: tốc độ animation không thay đổi (mượt đều)
+      - forwards: giữ trạng thái cuối cùng của animation (opacity = 1)
+    */
+  }
+}
+
+/* ---------------------------------- ... ---------------------------------- */
