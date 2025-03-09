@@ -172,7 +172,7 @@ function ReviewGrid() {
       <div className="absolute inset-x-0 top-0 h-32 pointer-events-none bg-gradient-to-b from-slate-100" />
       <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none bg-gradient-to-t from-slate-100" />
     </div>
-  );
+  ); 
 }
 
 /* ----------------------------- MAIN COMPONENT ---------------------------- */
