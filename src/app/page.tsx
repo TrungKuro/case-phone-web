@@ -16,12 +16,14 @@ import testimonial1 from "../../public/testimonials/1.jpg";
 import arrow from "../../public/arrow.png";
 import horse from "../../public/horse.jpg";
 
+import Link from "next/link";
+import { ROUTES } from "@/constants/routes";
+
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Phone from "@/components/Phone";
 import { ArrowRight, Check, Star } from "lucide-react";
 import { Icons } from "@/components/Icons";
 import { Reviews } from "@/components/Reviews";
-import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 
 export default function Home() {
@@ -313,7 +315,7 @@ export default function Home() {
                   size: "lg",
                   className: "mx-auto mt-8",
                 })}
-                href={"/configure/upload"}
+                href={ROUTES.CONFIGURE_UPLOAD}
               >
                 Create your case now <ArrowRight className="h-4 w-4 ml-1.5" />
               </Link>

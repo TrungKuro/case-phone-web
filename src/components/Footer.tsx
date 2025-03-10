@@ -1,5 +1,7 @@
-import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
+
+import Link from "next/link";
+import { ROUTES } from "@/constants/routes";
 
 const Footer = () => {
   return (
@@ -21,19 +23,19 @@ const Footer = () => {
           <div className="flex items-center justify-center">
             <div className="flex gap-x-8">
               <Link
-                href="#"
+                href={ROUTES.NONE}
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
                 Terms
               </Link>
               <Link
-                href="#"
+                href={ROUTES.NONE}
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="#"
+                href={ROUTES.NONE}
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
                 Cookie Policy

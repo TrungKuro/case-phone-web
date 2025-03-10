@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { ROUTES } from "@/constants/routes";
+
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { buttonVariants } from "./ui/button";
 import { ArrowRight } from "lucide-react";
@@ -14,7 +16,7 @@ const NavBar = async () => {
       <MaxWidthWrapper>
         <div className="flex h-14 items-center justify-between border-b border-zinc-200">
           {/* Logo */}
-          <Link href="/" className="flex z-40 font-semibold">
+          <Link href={ROUTES.HOME} className="flex z-40 font-semibold">
             case<span className="text-green-600">cobra</span>
           </Link>
 
@@ -25,7 +27,7 @@ const NavBar = async () => {
               <>
                 {/* SIGN OUT */}
                 <Link
-                  href="/api/auth/logout"
+                  href={ROUTES.AUTH_LOGOUT}
                   className={buttonVariants({
                     size: "sm",
                     variant: "ghost",
@@ -36,7 +38,7 @@ const NavBar = async () => {
                 {/* ADMIN */}
                 {isAdmin ? (
                   <Link
-                    href="/api/auth/logout"
+                    href={ROUTES.AUTH_LOGOUT}
                     className={buttonVariants({
                       size: "sm",
                       variant: "ghost",
@@ -47,7 +49,7 @@ const NavBar = async () => {
                 ) : null}
                 {/* CREATE CASE */}
                 <Link
-                  href="/configure/upload"
+                  href={ROUTES.CONFIGURE_UPLOAD}
                   className={buttonVariants({
                     size: "sm",
                     className: "hidden sm:flex items-center gap-1",
@@ -62,7 +64,7 @@ const NavBar = async () => {
               <>
                 {/* SIGN UP */}
                 <Link
-                  href="/api/auth/register"
+                  href={ROUTES.AUTH_REGISTER}
                   className={buttonVariants({
                     size: "sm",
                     variant: "ghost",
@@ -72,7 +74,7 @@ const NavBar = async () => {
                 </Link>
                 {/* LOGIN */}
                 <Link
-                  href="/api/auth/login"
+                  href={ROUTES.AUTH_LOGIN}
                   className={buttonVariants({
                     size: "sm",
                     className: "hidden sm:flex items-center gap-1",
@@ -84,7 +86,7 @@ const NavBar = async () => {
                 <div className="hidden sm:block h-8 w-px bg-zinc-200" />
                 {/* CREATE CASE */}
                 <Link
-                  href="/configure/upload"
+                  href={ROUTES.CONFIGURE_UPLOAD}
                   className={buttonVariants({
                     size: "sm",
                     className: "hidden sm:flex items-center gap-1",
