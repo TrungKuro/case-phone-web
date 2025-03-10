@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+import type { Metadata } from "next";
+
+import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
@@ -30,10 +33,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* -------------------- HOME PAGE (LANDING PAGE) ------------------- */}
+        {/* ------------------------------ PAGE ----------------------------- */}
         <NavBar />
-        {children}
-        <Footer />
+        <main className="flex flex-col min-h-[calc(100vh-3.5rem-1px)]">
+          <div className="flex flex-1 flex-col h-full">{children}</div>
+          <Footer />
+        </main>
+        <Toaster />
         {/* ----------------------------------------------------------------- */}
       </body>
     </html>
