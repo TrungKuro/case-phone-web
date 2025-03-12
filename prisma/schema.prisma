@@ -1,8 +1,19 @@
+// ✅ Cấu hình generator để tạo Prisma Client
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client-js" // Sử dụng Prisma Client cho JavaScript/TypeScript
 }
 
+// ✅ Cấu hình database (Data source)
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"         // Chọn PostgreSQL làm database
+  url      = env("DATABASE_URL")  // Lấy URL database từ biến môi trường .env
+}
+
+// ✅ Định nghĩa Model cho bảng "Configuration"
+model Configuration {
+  id               String  @id @default(cuid())  // ID duy nhất, sử dụng CUID() để tạo tự động
+  width            Int                           // Chiều rộng của cấu hình (bắt buộc)
+  height           Int                           // Chiều cao của cấu hình (bắt buộc)
+  imageUrl         String                        // URL ảnh (bắt buộc)
+  croppedImageUrl  String?                       // URL ảnh đã cắt (có thể NULL, vì có dấu `?`)
 }
