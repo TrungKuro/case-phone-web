@@ -29,6 +29,9 @@
   - Lệnh cài đặt thêm gói [Component Button](https://ui.shadcn.com/docs/components/button) - `pnpm dlx shadcn@latest add button`.
   - Lệnh cài đặt thêm gói [Component Progress](https://ui.shadcn.com/docs/components/progress) - `pnpm dlx shadcn@latest add progress`.
   - Lệnh cài đặt thêm gói [Component Sonner](https://ui.shadcn.com/docs/components/sonner) - `pnpm dlx shadcn@latest add sonner`.
+  - Lệnh cài đặt thêm gói [Component Aspect Ratio](https://ui.shadcn.com/docs/components/aspect-ratio) - `pnpm dlx shadcn@latest add aspect-ratio`.
+  - Lệnh cài đặt thêm gói [Component Scroll Area](https://ui.shadcn.com/docs/components/scroll-area) - `pnpm dlx shadcn@latest add scroll-area`.
+  - Lệnh cài đặt thêm gói [Component Label](https://ui.shadcn.com/docs/components/label) - `pnpm dlx shadcn@latest add label`.
 
 - <u>Các lưu ý</u>:
 
@@ -115,6 +118,31 @@
   - 🔹 Cắt ảnh (crop) hoặc xoay ảnh (rotate).
   - 🔹 Thêm bộ lọc (blur, sharpen, grayscale, v.v.).
   - 🔹 Hỗ trợ xử lý hàng loạt ảnh nhanh chóng.
+
+### 7. [React Rnd](https://www.npmjs.com/package/react-rnd)
+
+- Lệnh cài đặt gói - `pnpm install react-rnd`.
+
+  - Đây là một thư viện `React`.
+  - Giúp tạo các Component có thể kéo thả (draggable) và thay đổi kích thước (resizable).
+
+- Tính năng chính:
+
+  - 🔹 Kéo thả và thay đổi kích thước: Cho phép người dùng kéo thả và thay đổi kích thước các thành phần trong giao diện.​
+  - 🔹 Tùy chỉnh linh hoạt: Cung cấp các thuộc tính để thiết lập vị trí, kích thước ban đầu, giới hạn kích thước tối thiểu/tối đa, và các sự kiện callback khi kéo thả hoặc thay đổi kích thước.
+
+### 8. [@headlessui/react](https://www.npmjs.com/package/@headlessui/react)
+
+- Lệnh cài đặt gói - `pnpm install @headlessui/react`.
+
+  - Đây là một thư viện giúp bạn xây dựng các component UI như modal, dropdown, accordion, dialog, menu mà không áp đặt style.
+  - Nó cung cấp chức năng UI, nhưng bạn có thể tự thiết kế giao diện theo ý muốn.
+
+- Tính năng chính:
+
+  - 🔥 Cung cấp component UI nhưng không có style sẵn, dễ dàng tùy chỉnh với Tailwind CSS.
+  - 🔥 Hỗ trợ accessibility (a11y) giúp UI thân thiện với keyboard & screen reader.
+  - 🔥 Được tối ưu cho React, giúp dễ dàng xây dựng UI động mà không cần tự code logic.
 
 ## Các Service sử dụng
 
@@ -262,3 +290,41 @@
   │   ├── url             | imageUrl          (String)
   │   ├── croppedImageUrl | croppedImageUrl   (String?)
   ```
+
+- Để xem nội dung trong `Prisma Schema`, nhập lệnh `npx prisma studio`.
+
+## Các Error gặp phải
+
+🐞 Bug
+
+- Vd, mình đã upload hình lên database và hình được lưu ở path (https://j7ieebcwkc.ufs.sh/f/z703yu52e70coPGk6vgp1FY7HsrlVIhy5fOUNJBxnX3KSAtc).
+
+```
+Unhandled Runtime Error
+
+Error: Invalid src prop (https://j7ieebcwkc.ufs.sh/f/z703yu52e70coPGk6vgp1FY7HsrlVIhy5fOUNJBxnX3KSAtc) on `next/image`, hostname "j7ieebcwkc.ufs.sh" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+```
+
+📌 Nguyên nhân lỗi
+
+- Lỗi này xảy ra khi bạn dùng ảnh từ một domain bên ngoài (ở đây là `j7ieebcwkc.ufs.sh`) nhưng chưa khai báo domain này trong cấu hình của Next.js.
+- Next.js mặc định chỉ cho phép dùng ảnh từ các nguồn đã được cấu hình trước.
+
+🛠️ Cách khắc phục
+
+- Bước 1: Mở file `next.config.js` (hoặc `next.config.mjs`).
+- Bước 2: Thêm `hostname` `"j7ieebcwkc.ufs.sh"` vào mục `images.domains`.
+  - Tuy nhiên Next.js đề xuất: _"@deprecated — Use remotePatterns instead."_ -> ko dùng `domains` thay vào đó dùng `remotePatterns`.
+
+```javascript
+images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "j7ieebcwkc.ufs.sh",
+        pathname: "/**",
+      },
+    ],
+  },
+```
