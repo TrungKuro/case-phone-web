@@ -32,6 +32,7 @@
   - Lệnh cài đặt thêm gói [Component Aspect Ratio](https://ui.shadcn.com/docs/components/aspect-ratio) - `pnpm dlx shadcn@latest add aspect-ratio`.
   - Lệnh cài đặt thêm gói [Component Scroll Area](https://ui.shadcn.com/docs/components/scroll-area) - `pnpm dlx shadcn@latest add scroll-area`.
   - Lệnh cài đặt thêm gói [Component Label](https://ui.shadcn.com/docs/components/label) - `pnpm dlx shadcn@latest add label`.
+  - Lệnh cài đặt thêm gói [Component Dropdown Menu](https://ui.shadcn.com/docs/components/dropdown-menu) - `pnpm dlx shadcn@latest add dropdown-menu`.
 
 - <u>Các lưu ý</u>:
 

@@ -114,7 +114,7 @@ function ReviewColumn({
   return (
     <div
       ref={columnRef}
-      className={cn("animate-marquee py-4 gap-x-8", className)}
+      className={cn("animate-marquee py-4 space-x-8", className)}
       style={{ "--marquee-duration": duration } as React.CSSProperties}
     >
       {reviews.concat(reviews).map((imgSrc, reviewIndex) => (

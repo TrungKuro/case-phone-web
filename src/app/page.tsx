@@ -56,8 +56,8 @@ export default function Home() {
               </p>
 
               {/* Bullet Points */}
-              <ul className="mt-8 flex flex-col items-center sm:items-start gap-y-2 text-left font-medium">
-                <div className="gap-y-2">
+              <ul className="mt-8 flex flex-col items-center sm:items-start space-y-2 text-left font-medium">
+                <div className="space-y-2">
                   <li className="flex items-center gap-1.5 text-left">
                     <Check className="h-5 w-5 shrink-0 text-green-600" />
                     High-quality, durable material
@@ -76,7 +76,7 @@ export default function Home() {
               {/* Social Proof */}
               <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 {/* Customer Avatar Images */}
-                <div className="flex -gap-x-4">
+                <div className="flex -space-x-4">
                   <Image
                     className="inline-block h-10 w-10 rounded-full object-cover ring-2 ring-slate-100"
                     src={user1}
@@ -289,7 +289,7 @@ export default function Home() {
           </div>
 
           {/* Product Features */}
-          <ul className="mx-auto mt-12 w-fit max-w-prose sm:text-lg gap-y-2">
+          <ul className="mx-auto mt-12 w-fit max-w-prose sm:text-lg space-y-2">
             {/* Bullet Points */}
             <li className="w-fit">
               <Check className="inline h-5 w-5 mr-1.5 text-green-600" />

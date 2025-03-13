@@ -21,7 +21,7 @@ const Footer = () => {
 
           {/* Terms & Policies Link */}
           <div className="flex items-center justify-center">
-            <div className="flex gap-x-8">
+            <div className="flex space-x-8">
               <Link
                 href={ROUTES.NONE}
                 className="text-sm text-muted-foreground hover:text-gray-600"
