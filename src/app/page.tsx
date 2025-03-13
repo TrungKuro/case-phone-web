@@ -272,11 +272,7 @@ export default function Home() {
           {/* Upload Image and Preview Image on Case */}
           <div className="mx-auto max-w-6xl px-6 lg:px-8">
             <div className="relative flex flex-col md:grid grid-cols-2 items-center gap-40">
-              <Image
-                src={arrow}
-                alt="arrow"
-                className="absolute left-1/2 top-[25rem] md:top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 md:rotate-0 z-10"
-              />
+              {/* Input */}
               <div className="relative h-80 md:h-full w-full max-w-sm md:justify-self-end rounded-xl lg:rounded-2xl bg-gray-900/5 ring-inset ring-gray-900/10">
                 <Image
                   src={horse}
@@ -284,6 +280,13 @@ export default function Home() {
                   className="h-full w-full rounded-md bg-white object-cover shadow-2xl ring-1 ring-gray-900/10"
                 />
               </div>
+              {/* Process */}
+              <Image
+                src={arrow}
+                alt="arrow"
+                className="absolute left-1/2 top-[25rem] md:top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 md:rotate-0 z-10"
+              />
+              {/* Output */}
               <Phone className="w-60" imgSrc={horse} />
             </div>
           </div>
