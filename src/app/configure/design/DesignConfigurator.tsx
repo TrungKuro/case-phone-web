@@ -1,9 +1,3 @@
-/*
- * Tailwind V3          -> Tailwind V4
- * (bg-opacity-50)      -> (bg-current/50)
- * (border-opacity-10)  -> (border-current/10)
- */
-
 "use client";
 
 import { cn, formatPrice } from "@/lib/utils";
@@ -70,7 +64,7 @@ const DesignConfigurator = ({
       {/* Preview Display Area */}
       <div className="relative col-span-2 flex items-center justify-center h-[37.5rem] w-full max-w-4xl overflow-hidden rounded-lg border-2 border-dashed border-gray-300 p-12 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
         {/* Drag and Drop Area */}
-        <div className="relative pointer-events-none w-60 aspect-[896/1831] bg-current/50">
+        <div className="relative pointer-events-none w-60 aspect-[896/1831] bg-transparent">
           {/* Display Phone Case Frame */}
           <AspectRatio
             ratio={896 / 1831}
@@ -99,8 +93,8 @@ const DesignConfigurator = ({
         {/* Resize and Drag Image */}
         <Rnd
           default={{
-            x: 150,
-            y: 205,
+            x: 30,
+            y: 30,
             height: imageDimensions.height / 4,
             width: imageDimensions.height / 4,
           }}
@@ -128,19 +122,19 @@ const DesignConfigurator = ({
       <div className="flex flex-col w-full h-[37.5rem] col-span-full lg:col-span-1 bg-white">
         {/* Customize your Case */}
         <ScrollArea className="relative flex-1 overflow-auto">
+          {/* Fade Effect Above */}
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 z-10 h-12 bg-gradient-to-t from-white pointer-events-none"
+            className="absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-white pointer-events-none"
           />
+          {/* Content */}
           <div className="px-8 pt-8 pb-12">
             {/* Title */}
             <h2 className="text-3xl font-bold tracking-tight">
               Customize your case
             </h2>
-
             {/* Divider */}
             <div className="w-full h-px my-6 bg-zinc-200" />
-
             {/* Option */}
             <div className="relative mt-4 h-full flex flex-col justify-between">
               <div className="flex flex-col gap-6">
@@ -152,7 +146,7 @@ const DesignConfigurator = ({
                   }}
                 >
                   <Label>Color: {options.color.label}</Label>
-                  <div className="mt-3 flex items-center space-x-3">
+                  <div className="mt-3 flex items-center gap-x-3">
                     {COLORS.map((color) => (
                       <Radio
                         key={color.label}
@@ -176,7 +170,6 @@ const DesignConfigurator = ({
                     ))}
                   </div>
                 </RadioGroup>
-
                 {/* Select Model */}
                 <div className="relative flex flex-col w-full gap-3">
                   <Label>Model</Label>
@@ -220,7 +213,6 @@ const DesignConfigurator = ({
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-
                 {/* Select Material & Finish */}
                 {[MATERIALS, FINISHES].map(
                   ({ name, options: selectableOptions }) => (
@@ -288,26 +280,28 @@ const DesignConfigurator = ({
               </div>
             </div>
           </div>
+          {/* Fade Effect Below */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 z-10 h-12 bg-gradient-to-t from-white pointer-events-none"
+          />
         </ScrollArea>
 
         {/* Price & Buy */}
         <div className="w-full h-16 bg-white px-8">
-          <div className="w-full h-px bg-zinc-200">
-            <div className="flex items-center justify-end w-full h-full">
-              <div className="flex items-center w-full gap-6">
-                <p className="font-medium whitespace-nowrap">
-                  {formatPrice(
-                    (BASE_PRICE +
-                      options.finish.price +
-                      options.material.price) /
-                      100
-                  )}
-                </p>
-                <Button size="sm" className="w-full">
-                  Continue
-                  <ArrowRight className="inline h-4 w-4 ml-1.5" />
-                </Button>
-              </div>
+          <div className="w-full h-px bg-zinc-200" />
+          <div className="flex items-center justify-end w-full h-full">
+            <div className="flex items-center w-full gap-6">
+              <p className="font-medium whitespace-nowrap">
+                {formatPrice(
+                  (BASE_PRICE + options.finish.price + options.material.price) /
+                    100
+                )}
+              </p>
+              <Button size="sm" className="flex-1">
+                Continue
+                <ArrowRight className="inline h-4 w-4 ml-1.5" />
+              </Button>
             </div>
           </div>
         </div>
