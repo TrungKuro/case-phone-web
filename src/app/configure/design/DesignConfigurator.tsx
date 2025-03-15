@@ -150,8 +150,8 @@ const DesignConfigurator = ({
 
       // Chuyển đổi nội dung của CANVAS thành chuỗi base64 (dữ liệu ảnh)
       const base64 = canvas.toDataURL();
-      console.log(base64); //! Xuất base64 ra console để kiểm tra
-      // Lấy phần dữ liệu base64 thực tế (bỏ phần định dạng MIME)
+      // console.log(base64); //! Xuất base64 ra console để kiểm tra
+      // Lấy phần dữ liệu base64 thực tế (bỏ phần định dạng MIME -> data:image/png;base64,[data])
       const base64Data = base64.split(",")[1];
 
       // Chuyển đổi chuỗi base64 thành một đối tượng Blob với định dạng ảnh PNG
@@ -159,8 +159,10 @@ const DesignConfigurator = ({
       // Tạo một File mới từ Blob
       const file = new File([blob], "filename.png", { type: "image/png" });
 
+      // console.log(`Ready upload file: ${configId}`);
       // Tải File vừa tạo lên [UploadThing]
       await startUpload([file], { configId });
+      // console.log("Done upload file");
 
       /* ------------------------------------------------------------------- */
     } catch (err) {
@@ -452,7 +454,11 @@ const DesignConfigurator = ({
                     100
                 )}
               </p>
-              <Button size="sm" className="flex-1">
+              <Button
+                size="sm"
+                className="flex-1"
+                onClick={() => saveConfiguration()}
+              >
                 Continue
                 <ArrowRight className="inline h-4 w-4 ml-1.5" />
               </Button>
