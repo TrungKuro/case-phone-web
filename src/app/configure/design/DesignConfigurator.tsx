@@ -4,7 +4,7 @@ import { cn, formatPrice } from "@/lib/utils";
 import Image from "next/image";
 import template from "../../../../public/phone-template.png";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   COLORS,
   FINISHES,
@@ -26,15 +26,19 @@ import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Label } from "@/components/ui/label";
 
 import { BASE_PRICE } from "@/config/products";
+
+import { toast } from "sonner";
+
+import { useUploadThing } from "@/lib/uploadthing";
 
 interface DesignConfigurator {
   configId: string;
@@ -59,14 +63,152 @@ const DesignConfigurator = ({
     finish: FINISHES.options[0],
   });
 
+  /* -------------------- Values for Image Render (crop) ------------------- */
+
+  // Xác định "kích thước mặc định ban đầu" của Image
+  const widthImageRender = imageDimensions.width / 4;
+  const heightImageRender = imageDimensions.height / 4;
+
+  const [renderedDimension, setRenderedDimension] = useState({
+    width: widthImageRender,
+    height: heightImageRender,
+  });
+
+  // Xác định "vị trí mặc định ban đầu" của Image so với [Frame Area Drop Image]
+  const xPositionImageRender = 30;
+  const yPositionImageRender = 30;
+
+  const [renderedPosition, setRenderedPosition] = useState({
+    x: xPositionImageRender,
+    y: yPositionImageRender,
+  });
+
+  const phoneCaseRef = useRef<HTMLDivElement>(null); // Lưu trữ các thông số của [Frame Case Phone]
+  const containerRef = useRef<HTMLDivElement>(null); // Lưu trữ các thông số của [Frame Area Drop Image]
+
+  const { startUpload } = useUploadThing("imageUploader");
+
+  // Tính toán và lưu trữ các thông số cấu hình cho Image (Cropped)
+  async function saveConfiguration() {
+    try {
+      /* ------------------------------------------------------------------- */
+
+      // Lấy thông số "kích thước" và "vị trí" của [Frame Case Phone] so với Web
+      const {
+        left: caseLeft,
+        top: caseTop,
+        width: caseWidth,
+        height: caseHeight,
+      } = phoneCaseRef.current!.getBoundingClientRect();
+
+      // Lấy thông số "vị trí" của [Frame Area Drop Image] so với Web
+      const { left: containerLeft, top: containerTop } =
+        containerRef.current!.getBoundingClientRect();
+
+      // Xác định khoảng "bù" giữa [Frame Case Phone] và [Frame Area Drop Image]
+      const leftOffset = caseLeft - containerLeft;
+      const topOffset = caseTop - containerTop;
+
+      // Tính ra "vị trí" của Image so với [Frame Case Phone]
+      const actualX = renderedPosition.x - leftOffset;
+      const actualY = renderedPosition.y - topOffset;
+
+      /* ------------------------------------------------------------------- */
+
+      // Tạo một thẻ <canvas> mới trong DOM
+      const canvas = document.createElement("canvas");
+
+      // Đặt kích thước cho CANVAS theo kích thước của [Frame Case Phone] để "crop hình"
+      canvas.width = caseWidth;
+      canvas.height = caseHeight;
+
+      // Lấy ngữ cảnh vẽ 2D từ CANVAS
+      const ctx = canvas.getContext("2d");
+
+      // Tạo một Object (Image) để tải ảnh từ URL
+      const userImage = new window.Image();
+      //! Cho phép tải ảnh từ nguồn khác mà không gặp lỗi CORS
+      userImage.crossOrigin = "anonymous";
+      userImage.src = imageUrl;
+
+      //! Đợi ảnh tải xong trước khi tiếp tục xử lý
+      await new Promise((resolve) => (userImage.onload = resolve));
+
+      // Vẽ ảnh lên CANVAS với "vị trí" và "kích thước" được xác định
+      ctx?.drawImage(
+        // URL của Image
+        userImage,
+        // Vị trí của Image so với CANVAS
+        actualX,
+        actualY,
+        // Kích thước của Image
+        renderedDimension.width,
+        renderedDimension.height
+      );
+
+      /* ------------------------------------------------------------------- */
+
+      // Chuyển đổi nội dung của CANVAS thành chuỗi base64 (dữ liệu ảnh)
+      const base64 = canvas.toDataURL();
+      console.log(base64); //! Xuất base64 ra console để kiểm tra
+      // Lấy phần dữ liệu base64 thực tế (bỏ phần định dạng MIME)
+      const base64Data = base64.split(",")[1];
+
+      // Chuyển đổi chuỗi base64 thành một đối tượng Blob với định dạng ảnh PNG
+      const blob = base64ToBlob(base64Data, "image/png");
+      // Tạo một File mới từ Blob
+      const file = new File([blob], "filename.png", { type: "image/png" });
+
+      // Tải File vừa tạo lên [UploadThing]
+      await startUpload([file], { configId });
+
+      /* ------------------------------------------------------------------- */
+    } catch (err) {
+      toast.error(
+        <p className="text-red-400 font-bold">Something went wrong</p>,
+        {
+          description:
+            "There was a problem saving your config, please try again.",
+        }
+      );
+    }
+  }
+
+  /**
+   * Chuyển đổi chuỗi Base64 thành một Blob để có thể sử dụng như một file.
+   * @param {string} base64 - Chuỗi dữ liệu base64 (không bao gồm phần tiền tố MIME type).
+   * @param {string} mimeType - Loại MIME của dữ liệu (ví dụ: 'image/png', 'application/pdf').
+   * @returns {Blob} - Đối tượng Blob chứa dữ liệu đã được giải mã từ base64.
+   */
+  function base64ToBlob(base64: string, mimeType: string) {
+    // Giải mã chuỗi base64 thành chuỗi nhị phân
+    const byteCharacters = atob(base64);
+    // Tạo một mảng số có độ dài bằng số ký tự trong chuỗi nhị phân
+    const byteNumbers = new Array(byteCharacters.length);
+    // Duyệt qua từng ký tự trong chuỗi nhị phân, lấy mã ASCII của từng ký tự
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    // Chuyển mảng số thành một Uint8Array (mảng byte) để tạo dữ liệu nhị phân
+    const byteArray = new Uint8Array(byteNumbers);
+    // Tạo và trả về một Blob từ dữ liệu nhị phân với loại MIME được chỉ định
+    return new Blob([byteArray], { type: mimeType });
+  }
+
+  /* ----------------------------------------------------------------------- */
+
   return (
     <div className="relative grid grid-cols-1 lg:grid-cols-3 mt-20 mb-20 pb-20">
       {/* Preview Display Area */}
-      <div className="relative col-span-2 flex items-center justify-center h-[37.5rem] w-full max-w-4xl overflow-hidden rounded-lg border-2 border-dashed border-gray-300 p-12 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+      <div
+        ref={containerRef}
+        className="relative col-span-2 flex items-center justify-center h-[37.5rem] w-full max-w-4xl overflow-hidden rounded-lg border-2 border-dashed border-gray-300 p-12 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+      >
         {/* Drag and Drop Area */}
         <div className="relative pointer-events-none w-60 aspect-[896/1831] bg-transparent">
           {/* Display Phone Case Frame */}
           <AspectRatio
+            ref={phoneCaseRef}
             ratio={896 / 1831}
             className="relative z-50 pointer-events-none w-full aspect-[896/1831]"
           >
@@ -93,10 +235,22 @@ const DesignConfigurator = ({
         {/* Resize and Drag Image */}
         <Rnd
           default={{
-            x: 30,
-            y: 30,
-            height: imageDimensions.height / 4,
-            width: imageDimensions.height / 4,
+            x: xPositionImageRender,
+            y: yPositionImageRender,
+            width: widthImageRender,
+            height: heightImageRender,
+          }}
+          onResizeStop={(_, __, ref, ___, { x, y }) => {
+            setRenderedDimension({
+              // Slice to convert from { [value]px } to { [value] }
+              width: parseInt(ref.style.width.slice(0, -2)),
+              height: parseInt(ref.style.height.slice(0, -2)),
+            });
+            setRenderedPosition({ x, y });
+          }}
+          onDragStop={(_, data) => {
+            const { x, y } = data;
+            setRenderedPosition({ x, y });
           }}
           className="absolute z-20 border-[3px] border-primary"
           lockAspectRatio
@@ -146,7 +300,7 @@ const DesignConfigurator = ({
                   }}
                 >
                   <Label>Color: {options.color.label}</Label>
-                  <div className="mt-3 flex items-center gap-x-3">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-3 mt-3">
                     {COLORS.map((color) => (
                       <Radio
                         key={color.label}
@@ -287,7 +441,7 @@ const DesignConfigurator = ({
           />
         </ScrollArea>
 
-        {/* Price & Buy */}
+        {/* Price & Continue */}
         <div className="w-full h-16 bg-white px-8">
           <div className="w-full h-px bg-zinc-200" />
           <div className="flex items-center justify-end w-full h-full">
