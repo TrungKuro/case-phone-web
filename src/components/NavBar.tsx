@@ -21,7 +21,7 @@ const NavBar = async () => {
           </Link>
 
           {/* Navigation Button Group */}
-          <div className="flex h-full items-center gap-x-4">
+          <div className="flex h-full items-center space-x-4">
             {user ? (
               /* ------------------------- HAD USER ------------------------ */
               <>

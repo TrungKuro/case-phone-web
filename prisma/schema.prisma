@@ -1,8 +1,76 @@
+// ✅ Cấu hình generator để tạo Prisma Client
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client-js" // Sử dụng Prisma Client cho JavaScript/TypeScript
 }
 
+// ✅ Cấu hình database (Data source)
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"         // Chọn PostgreSQL làm database
+  url      = env("DATABASE_URL")  // Lấy URL database từ biến môi trường .env
 }
+
+/* ------------------------------------------------------------------------- */
+
+// ✅ Định nghĩa Model cho bảng "Configuration"
+model Configuration {
+  id               String  @id @default(cuid())  // ID duy nhất, sử dụng CUID() để tạo tự động
+  width            Int                           // Chiều rộng của cấu hình (bắt buộc)
+  height           Int                           // Chiều cao của cấu hình (bắt buộc)
+  imageUrl         String                        // URL ảnh (bắt buộc)
+  
+  croppedImageUrl  String?                       // URL ảnh đã cắt (có thể NULL, vì có dấu `?`)
+
+  color            CaseColor?
+  model            PhoneModel?
+  material         CaseMaterial?
+  finish           CaseFinish?
+}
+
+/* ------------------------------------------------------------------------- */
+
+enum CaseColor {
+  midnight
+  pacific_blue
+  sky_blue
+  light_blue
+  gray_purple
+  storm_gray
+  lavender
+  light_purple
+  carmine
+  cherry_pink
+  soft_pink
+  peach_orange
+  alpine_green
+  light_green
+}
+
+enum PhoneModel {
+  iphonex
+  iphone11
+  iphone12
+  iphone13
+  iphone14
+  iphone15  
+}
+
+enum CaseMaterial {
+  silicone
+  polycarbonate
+  alcantara
+  leather
+}
+
+enum CaseFinish {
+  smooth
+  textured
+  matte
+}
+
+enum OrderStatus {
+  fulfilled
+  shipped
+  awaiting_shipment
+}
+
+/* ------------------------------------------------------------------------- */

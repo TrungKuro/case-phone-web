@@ -71,7 +71,7 @@ function Review({ imgSrc, className, ...props }: ReviewProps) {
   return (
     <div
       className={cn(
-        "animate-fade-in opacity-0 rounded-[2.25rem] bg-white p-6 shadow-xl shadow-slate-900/5",
+        "animate-fade-in opacity-0 mx-4 my-8 p-6 rounded-[2.25rem] bg-white shadow-xl shadow-slate-900/5",
         className
       )}
       style={{ animationDelay }}
@@ -114,7 +114,7 @@ function ReviewColumn({
   return (
     <div
       ref={columnRef}
-      className={cn("animate-marquee py-4 gap-x-8", className)}
+      className={cn("animate-marquee", className)}
       style={{ "--marquee-duration": duration } as React.CSSProperties}
     >
       {reviews.concat(reviews).map((imgSrc, reviewIndex) => (
@@ -140,7 +140,7 @@ function ReviewGrid() {
   return (
     <div
       ref={containerRef}
-      className="relative -mx-4 mt-16 sm:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-[49rem] max-h-[150vh] items-start gap-8 overflow-hidden px-4"
+      className="relative -mx-4 mt-16 sm:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-[49rem] max-h-[150vh] items-start overflow-hidden px-4"
     >
       {isInView ? (
         <>

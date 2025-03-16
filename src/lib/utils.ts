@@ -16,3 +16,20 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+/**
+ * Định dạng số tiền thành chuỗi hiển thị theo kiểu tiền tệ USD.
+ *
+ * @param price - Giá trị số cần định dạng
+ * @returns Chuỗi định dạng tiền tệ (ví dụ: "$1,234.56")
+ */
+export const formatPrice = (price: number) => {
+  // ✅ Tạo đối tượng formatter sử dụng Intl.NumberFormat để định dạng số theo kiểu tiền tệ USD
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency", // ✅ Hiển thị theo kiểu tiền tệ
+    currency: "USD", // ✅ Đặt đơn vị tiền tệ là USD
+  });
+
+  // ✅ Trả về giá trị số đã được định dạng thành chuỗi tiền tệ
+  return formatter.format(price);
+};

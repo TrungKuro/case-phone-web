@@ -33,9 +33,15 @@ const Page = () => {
   const onDropRejected = (rejectedFiles: FileRejection[]) => {
     const [file] = rejectedFiles;
     setIsDragOver(false);
-    toast(`${file.file.type} type is not supported.`, {
-      description: "Please choose a PNG, JPG, or JPEG image instead.",
-    });
+    toast.error(
+      <p className="font-bold">
+        File <span className="text-red-400">{file.file.type}</span> type is not
+        supported.
+      </p>,
+      {
+        description: "Please choose a PNG, JPG, or JPEG image instead.",
+      }
+    );
   };
 
   const onDropAccepted = (acceptedFiles: File[]) => {
