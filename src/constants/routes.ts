@@ -3,6 +3,7 @@ export const ROUTES = {
 
   CONFIGURE_UPLOAD: "/configure/upload",
   CONFIGURE_DESIGN: "/configure/design?id=", // `/configure/design?id=${configId}`
+  CONFIGURE_PREVIEW: "/configure/preview?id=", // `/configure/preview?id=${configId}`
 
   // Inside Page Configure
   STEP_UPLOAD: "/upload",

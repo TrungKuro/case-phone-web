@@ -30,19 +30,19 @@ model Configuration {
 
 enum CaseColor {
   midnight
-  pacificBlue
-  skyBlue
-  lightBlue
-  grayPurple
-  stormGray
+  pacific_blue
+  sky_blue
+  light_blue
+  gray_purple
+  storm_gray
   lavender
-  lightPurple
+  light_purple
   carmine
-  cherryPink
-  softPink
-  peachOrange
-  alpineGreen
-  lightGreen
+  cherry_pink
+  soft_pink
+  peach_orange
+  alpine_green
+  light_green
 }
 
 enum PhoneModel {

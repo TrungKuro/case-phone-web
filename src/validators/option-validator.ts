@@ -12,35 +12,35 @@ export const COLORS = [
 
   {
     label: "Pacific Blue",
-    value: "pacific-blue",
+    value: "pacific_blue",
     tw: "blue-800",
   },
   // bg-blue-800 border-blue-800
 
   {
     label: "Sky Blue",
-    value: "sky-blue",
+    value: "sky_blue",
     tw: "sky-600",
   },
   // bg-sky-600 border-sky-600
 
   {
     label: "Light Blue",
-    value: "light-blue",
+    value: "light_blue",
     tw: "blue-300",
   },
   // bg-blue-300 border-blue-300
 
   {
     label: "Gray Purple",
-    value: "gray-purple",
+    value: "gray_purple",
     tw: "gray-700",
   },
   // bg-gray-700 border-gray-700
 
   {
     label: "Storm Gray",
-    value: "storm-gray",
+    value: "storm_gray",
     tw: "gray-600",
   },
   // bg-gray-600 border-gray-600
@@ -54,7 +54,7 @@ export const COLORS = [
 
   {
     label: "Light Purple",
-    value: "light-purple",
+    value: "light_purple",
     tw: "purple-300",
   },
   // bg-purple-300 border-purple-300
@@ -68,35 +68,35 @@ export const COLORS = [
 
   {
     label: "Cherry Pink",
-    value: "cherry-pink",
+    value: "cherry_pink",
     tw: "rose-400",
   },
   // bg-rose-400 border-rose-400
 
   {
     label: "Soft Pink",
-    value: "soft-pink",
+    value: "soft_pink",
     tw: "rose-200",
   },
   // bg-rose-200 border-rose-200
 
   {
     label: "Peach Orange",
-    value: "peach-orange",
+    value: "peach_orange",
     tw: "orange-300",
   },
   // bg-orange-300 border-orange-300
 
   {
     label: "Alpine Green",
-    value: "alpine-green",
+    value: "alpine_green",
     tw: "green-900",
   },
   // bg-green-900 border-green-900
 
   {
     label: "Light Green",
-    value: "light-green",
+    value: "light_green",
     tw: "green-300",
   },
   // bg-green-300 border-green-300

@@ -145,6 +145,23 @@
   - 🔥 Hỗ trợ accessibility (a11y) giúp UI thân thiện với keyboard & screen reader.
   - 🔥 Được tối ưu cho React, giúp dễ dàng xây dựng UI động mà không cần tự code logic.
 
+### 9. [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query)
+
+- Lệnh cài đặt gói - `pnpm install @tanstack/react-query`.
+
+  - Trước đây là `react-query`.
+  - Là một thư viện quản lý dữ liệu và caching dành cho `React`.
+  - Giúp tối ưu hóa việc fetch API, giảm số lần gọi API không cần thiết và cải thiện trải nghiệm người dùng.
+
+- Tính năng chính:
+
+  - ✅ Quản lý dữ liệu bất đồng bộ (async state management)
+  - ✅ Tự động caching & re-fetch khi dữ liệu thay đổi
+  - ✅ Hỗ trợ background sync (đồng bộ dữ liệu khi người dùng quay lại trang)
+  - ✅ Tối ưu hóa hiệu suất (giảm số lần gọi API, chỉ fetch khi cần thiết)
+  - ✅ Dễ dàng xử lý trạng thái (loading, error, success, refetching)
+  - ✅ Hỗ trợ pagination, infinite scrolling, polling (fetch liên tục)
+
 ## Các Service sử dụng
 
 ### 1. [Kinde](https://kinde.com/)

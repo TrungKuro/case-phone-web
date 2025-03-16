@@ -1,32 +1,42 @@
 "use client";
 
-import { cn, formatPrice } from "@/lib/utils";
-import Image from "next/image";
-import template from "../../../../public/phone-template.png";
+/* ------------------------------------------------------------------------- */
 
+// ✅ 1. Import React & Next.js
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+// ✅ 2. Import thư viện bên thứ ba
+import { Rnd } from "react-rnd";
+import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query";
+import {
+  RadioGroup,
+  Radio,
+  Label as HeadlessLabel, // Đổi tên tránh xung đột với `Lable`
+  Description,
+} from "@headlessui/react";
+import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
+
+// ✅ 3. Import cấu hình & utils từ thư mục nội bộ
+import { BASE_PRICE } from "@/config/products";
 import {
   COLORS,
   FINISHES,
   MATERIALS,
   MODELS,
 } from "@/validators/option-validator";
+import { ROUTES } from "@/constants/routes";
+import { cn, formatPrice } from "@/lib/utils";
+import { useUploadThing } from "@/lib/uploadthing";
+import { saveConfig as _saveConfig, SaveConfigArgs } from "./actions"; // Đổi tên tránh xung đột với `saveConfig`
 
-import HandleComponent from "@/components/HandleComponent";
-
-import { Rnd } from "react-rnd";
-import {
-  RadioGroup,
-  Radio,
-  Label as HeadlessLabel,
-  Description,
-} from "@headlessui/react";
-import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
-
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { ScrollArea } from "@/components/ui/scroll-area";
+// ✅ 4. Import các component UI từ thư mục nội bộ
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -34,11 +44,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { BASE_PRICE } from "@/config/products";
+// ✅ 5. Import component tùy chỉnh từ thư mục nội bộ
+import HandleComponent from "@/components/HandleComponent";
 
-import { toast } from "sonner";
+// ✅ 6. Import tài nguyên (hình ảnh, assets)
+import template from "../../../../public/phone-template.png";
 
-import { useUploadThing } from "@/lib/uploadthing";
+/* ------------------------------------------------------------------------- */
 
 interface DesignConfigurator {
   configId: string;
@@ -51,6 +63,32 @@ const DesignConfigurator = ({
   imageUrl,
   imageDimensions,
 }: DesignConfigurator) => {
+  const router = useRouter();
+
+  /*
+   * Promise.all() là một phương thức trong JavaScript giúp chạy nhiều Promise đồng thời và chờ tất cả Promise hoàn thành trước khi trả về kết quả.
+   *
+   * Hàm saveConfiguration() -> Save Cropped Image
+   * Hàm _saveConfig()       -> Update Database
+   */
+  const { mutate: saveConfig } = useMutation({
+    mutationKey: ["save-config"],
+    mutationFn: async (args: SaveConfigArgs) => {
+      await Promise.all([saveConfiguration(), _saveConfig(args)]);
+    },
+    onError: () => {
+      toast.error(
+        <p className="text-red-400 font-bold">Something went wrong</p>,
+        {
+          description: "There was an error on our end. Please try again.",
+        }
+      );
+    },
+    onSuccess: () => {
+      router.push(ROUTES.CONFIGURE_PREVIEW + configId);
+    },
+  });
+
   const [options, setOptions] = useState<{
     color: (typeof COLORS)[number];
     model: (typeof MODELS.options)[number];
@@ -165,6 +203,7 @@ const DesignConfigurator = ({
       // console.log("Done upload file");
 
       /* ------------------------------------------------------------------- */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       toast.error(
         <p className="text-red-400 font-bold">Something went wrong</p>,
@@ -457,7 +496,15 @@ const DesignConfigurator = ({
               <Button
                 size="sm"
                 className="flex-1"
-                onClick={() => saveConfiguration()}
+                onClick={() => {
+                  saveConfig({
+                    configId,
+                    color: options.color.value,
+                    model: options.model.value,
+                    material: options.material.value,
+                    finish: options.finish.value,
+                  });
+                }}
               >
                 Continue
                 <ArrowRight className="inline h-4 w-4 ml-1.5" />
