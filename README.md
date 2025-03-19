@@ -162,6 +162,18 @@
   - ✅ Dễ dàng xử lý trạng thái (loading, error, success, refetching)
   - ✅ Hỗ trợ pagination, infinite scrolling, polling (fetch liên tục)
 
+### 10. [react-dom-confetti](https://www.npmjs.com/package/react-dom-confetti)
+
+- Lệnh cài đặt gói - `pnpm install react-dom-confetti`.
+
+  - Là một thư viện hiệu ứng pháo giấy (confetti) dành cho `React`.
+  - Giúp hiển thị hiệu ứng ăn mừng khi sự kiện xảy ra.
+
+- Khi nào nên dùng:
+
+  - ✅ Dùng khi muốn thêm hiệu ứng ăn mừng sau sự kiện (mua hàng, đăng ký thành công, đạt được mục tiêu...).
+  - ✅ Dễ dùng, nhẹ, không ảnh hưởng đến hiệu suất trang web.
+
 ## Các Service sử dụng
 
 ### 1. [Kinde](https://kinde.com/)

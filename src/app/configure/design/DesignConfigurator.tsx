@@ -195,7 +195,9 @@ const DesignConfigurator = ({
       // Chuyển đổi chuỗi base64 thành một đối tượng Blob với định dạng ảnh PNG
       const blob = base64ToBlob(base64Data, "image/png");
       // Tạo một File mới từ Blob
-      const file = new File([blob], "filename.png", { type: "image/png" });
+      const file = new File([blob], `filename_${configId.slice(0, 10)}.png`, {
+        type: "image/png",
+      });
 
       // console.log(`Ready upload file: ${configId}`);
       // Tải File vừa tạo lên [UploadThing]
