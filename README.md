@@ -323,9 +323,20 @@
 
 - Để xem nội dung trong `Prisma Schema`, nhập lệnh `npx prisma studio`.
 
+## Các Layout tùy chỉnh
+
+### Recursive Font từ Google Fonts
+
+🔹 Recursive có gì đặc biệt?
+
+- ✅ Variable Font (biến đổi nhiều kiểu trong một file duy nhất).
+- ✅ Hỗ trợ mono-space, sans-serif và casual styles.
+- ✅ Nhẹ, tối ưu cho hiệu suất.
+- ✅ Tương thích tốt với Next.js & Tailwind CSS.
+
 ## Các Error gặp phải
 
-🐞 Bug
+### 🐞 Invalid "src" Prop on Component Image of NextJs
 
 - Vd, mình đã upload hình lên database và hình được lưu ở path (https://j7ieebcwkc.ufs.sh/f/z703yu52e70coPGk6vgp1FY7HsrlVIhy5fOUNJBxnX3KSAtc).
 

@@ -195,3 +195,36 @@
 }
 
 /* ---------------------------------- ... ---------------------------------- */
+
+/* 
+  Định nghĩa animation "flashing" (nhấp nháy) bằng @keyframes.
+  Hiệu ứng này thay đổi độ trong suốt (opacity) theo từng giai đoạn:
+  - 0%   : Độ trong suốt thấp (0.2), phần tử gần như mờ đi.
+  - 20%  : Độ trong suốt đạt 1, phần tử hiện rõ.
+  - 100% : Quay lại độ trong suốt thấp (0.2), phần tử mờ dần.
+*/
+@keyframes flashing {
+  0% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@layer utilities {
+  /* 
+    Định nghĩa utility class "animate-flashing".
+    - Áp dụng animation "flashing" với thời gian chạy 1.4 giây.
+    - Hiệu ứng lặp vô hạn (`infinite`).
+    - Chạy với tốc độ tuyến tính (`linear`) để đảm bảo nhấp nháy đều đặn.
+  */
+  .animate-flashing {
+    animation: flashing 1.4s infinite linear;
+  }
+}
+
+/* ---------------------------------- ... ---------------------------------- */
