@@ -195,7 +195,9 @@ const DesignConfigurator = ({
       // Chuyển đổi chuỗi base64 thành một đối tượng Blob với định dạng ảnh PNG
       const blob = base64ToBlob(base64Data, "image/png");
       // Tạo một File mới từ Blob
-      const file = new File([blob], "filename.png", { type: "image/png" });
+      const file = new File([blob], `filename_${configId.slice(0, 10)}.png`, {
+        type: "image/png",
+      });
 
       // console.log(`Ready upload file: ${configId}`);
       // Tải File vừa tạo lên [UploadThing]
@@ -373,7 +375,7 @@ const DesignConfigurator = ({
                       <Button
                         variant="outline"
                         role="combobox"
-                        className="w-full justify-between"
+                        className="w-full justify-between cursor-pointer"
                       >
                         {options.model.label}
                         <ChevronsUpDown className="h-4 w-4 shrink-0 ml-2 opacity-50" />
@@ -495,7 +497,7 @@ const DesignConfigurator = ({
               </p>
               <Button
                 size="sm"
-                className="flex-1"
+                className="flex-1 cursor-pointer"
                 onClick={() => {
                   saveConfig({
                     configId,

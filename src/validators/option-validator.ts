@@ -172,19 +172,19 @@ export const FINISHES = {
   name: "finish",
   options: [
     {
-      label: "Smooth Finish",
+      label: "Smooth",
       value: "smooth",
       description: undefined,
       price: PRODUCT_PRICES.finish.smooth,
     },
     {
-      label: "Textured Finish",
+      label: "Textured",
       value: "textured",
       description: "Soft grippy texture",
       price: PRODUCT_PRICES.finish.textured,
     },
     {
-      label: "Matte Finish",
+      label: "Matte",
       value: "matte",
       description: "Fingerprint-resistant matte surface",
       price: PRODUCT_PRICES.finish.matte,

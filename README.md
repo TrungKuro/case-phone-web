@@ -162,6 +162,18 @@
   - ✅ Dễ dàng xử lý trạng thái (loading, error, success, refetching)
   - ✅ Hỗ trợ pagination, infinite scrolling, polling (fetch liên tục)
 
+### 10. [react-dom-confetti](https://www.npmjs.com/package/react-dom-confetti)
+
+- Lệnh cài đặt gói - `pnpm install react-dom-confetti`.
+
+  - Là một thư viện hiệu ứng pháo giấy (confetti) dành cho `React`.
+  - Giúp hiển thị hiệu ứng ăn mừng khi sự kiện xảy ra.
+
+- Khi nào nên dùng:
+
+  - ✅ Dùng khi muốn thêm hiệu ứng ăn mừng sau sự kiện (mua hàng, đăng ký thành công, đạt được mục tiêu...).
+  - ✅ Dễ dùng, nhẹ, không ảnh hưởng đến hiệu suất trang web.
+
 ## Các Service sử dụng
 
 ### 1. [Kinde](https://kinde.com/)
@@ -311,9 +323,20 @@
 
 - Để xem nội dung trong `Prisma Schema`, nhập lệnh `npx prisma studio`.
 
+## Các Layout tùy chỉnh
+
+### Recursive Font từ Google Fonts
+
+🔹 Recursive có gì đặc biệt?
+
+- ✅ Variable Font (biến đổi nhiều kiểu trong một file duy nhất).
+- ✅ Hỗ trợ mono-space, sans-serif và casual styles.
+- ✅ Nhẹ, tối ưu cho hiệu suất.
+- ✅ Tương thích tốt với Next.js & Tailwind CSS.
+
 ## Các Error gặp phải
 
-🐞 Bug
+### 🐞 Invalid "src" Prop on Component Image of NextJs
 
 - Vd, mình đã upload hình lên database và hình được lưu ở path (https://j7ieebcwkc.ufs.sh/f/z703yu52e70coPGk6vgp1FY7HsrlVIhy5fOUNJBxnX3KSAtc).
 

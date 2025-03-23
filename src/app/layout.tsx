@@ -1,23 +1,37 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
+import { /*Geist, Geist_Mono*/ Recursive } from "next/font/google";
 
-import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+/* ------------------ Font mặc định khi tạo dự án Next.js ------------------ */
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
+
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
+
+/* ------------------------------ Font tự chọn ----------------------------- */
+
+const recursive = Recursive({ subsets: ["latin"] });
+
+/* ------------------------ Background Image tự chọn ----------------------- */
+
+/*
+ * Lưu ý: có sử dụng HÌNH NỀN TÙY CHỈNH tên "grainy-light"
+ */
+
+/* ------------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,11 +46,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={recursive.className} // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* ------------------------------ PAGE ----------------------------- */}
         <NavBar />
-        <main className="flex flex-col min-h-[calc(100vh-3.5rem-1px)]">
+        <main className="grainy-light flex flex-col min-h-[calc(100vh-3.5rem-1px)]">
           <div className="flex flex-1 flex-col h-full">
             <Providers>{children}</Providers>
           </div>

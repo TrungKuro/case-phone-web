@@ -24,6 +24,66 @@ model Configuration {
   model            PhoneModel?
   material         CaseMaterial?
   finish           CaseFinish?
+
+  order            Order[]
+}
+
+model User {
+  id               String  @id @default(cuid())
+  email            String
+  order            Order[]
+
+  createAt         DateTime @default(now())
+  updateAt         DateTime @updatedAt
+}
+
+model Order {
+  id                String @id @default(cuid())
+
+  configurationId   String
+  configuration     Configuration @relation(fields: [configurationId], references: [id])
+
+  userId            String
+  user              User @relation(fields: [userId], references: [id])
+
+  shippingAddressId String?
+  shippingAddress   ShippingAddress? @relation(fields: [shippingAddressId], references: [id])
+
+  billingAddressId  String?
+  billingAddress    BillingAddress? @relation(fields: [billingAddressId], references: [id])
+
+  amount            Float
+  isPaid            Boolean @default(false)
+  status            OrderStatus @default(awaiting_shipment)
+
+  createdAt         DateTime @default(now())
+  updated           DateTime @updatedAt
+}
+
+model ShippingAddress {
+  id               String @id @default(cuid())
+  
+  name             String
+  street           String
+  city             String
+  postalCode       String
+  country          String
+  state            String?
+  phoneNumber      String?
+  orders           Order[]
+}
+
+model BillingAddress {
+  id               String @id @default(cuid())
+  
+  name             String
+  street           String
+  city             String
+  postalCode       String
+  country          String
+  state            String?
+  phoneNumber      String?
+  orders           Order[]
 }
 
 /* ------------------------------------------------------------------------- */
