@@ -360,7 +360,7 @@
     - Payload style: _"Snapshot"_
     - Events: _"Checkout -> checkout.session.completed"_
     - Destination Types: _"Webhook Endpoint"_
-    - Endpoint URL: `https://casephone.com/api/webhooks` ... (lưu ý, để có tên miền `casephone.com` thay vì `localhost:3000` bạn cần <u>deloy app web</u> của bạn)
+    - Endpoint URL: `https://casephone.com/api/webhooks`
     - Endpoint Name: _"case-phone"_
   - Sau khi tạo `Event Destination` xong, trong `Destination Details` bạn có thể lấy dữ liệu của `Signing Secret` dùng cho ứng dụng Web của bạn.
 
@@ -388,11 +388,15 @@
 - 🛠️ Cách dùng Vercel (quy trình chuẩn):
   - `Push` code lên GitHub.
   - Truy cập web Vercel.
-  - Chọn `Add New Project` → Kết nối `GitHub Repo`
+  - Chọn `Add New Project` → Kết nối `GitHub Repo`.
+    - Lưu ý, bởi vì các biến trong file `(.env)` ko được push lên GitHub.
+    - Cho nên bạn cần phải cung cấp các giá trị `Environment Variables` cho Vercel trước khi deloy.
+    - Để App Web của bạn có thể sử dụng các Service mà hoạt động được.
   - Vercel tự động:
     - Nhận diện framework (Next.js, React, v.v.)
     - Cấu hình build và output
     - Tạo link preview (ví dụ: https://your-app.vercel.app)
+    - Trừ các _"biến môi trường"_ cần cập nhập thủ công!
   - Mỗi lần bạn _"push code"_ → <u>tự động</u> `Deploy`.
 
 ## Các Layout tùy chỉnh
@@ -486,6 +490,47 @@ images: {
     ],
   },
 ```
+
+### 🐞 Type error: Module '"@prisma/client"' has no exported member ...
+
+- Lỗi này xuất hiện trong quá trình Deloy dự án bằng Vercel.
+
+❗ Vấn đề thật sự là gì?
+
+- Prisma đã không generate thành công file `@prisma/client` tương ứng.
+- Vì **script** `prisma generate` đã bị Vercel bỏ qua (ignored) trong quá trình build.
+
+🛠️ Cách khắc phục:
+
+- ✅ 1. Thêm **script generate** vào `postinstall` trong `package.json`.
+  - Mở file `package.json`, thêm dòng dưới vào `scripts`.
+  - Lưu ý, `postinstall` sẽ được Vercel tự động gọi sau khi cài `dependencies`.
+
+```json
+"scripts": {
+  "postinstall": "prisma generate"
+}
+```
+
+- ✅ 2. Commit lại code và `redeploy`.
+
+```bash
+git add .
+git commit -m "fix: run prisma generate on postinstall"
+git push
+```
+
+- `postinstall` là gì?
+
+  - Đây là một _"script đặc biệt"_ trong file `package.json`.
+  - Nó sẽ tự động chạy ngay sau khi cài đặt xong tất cả các `dependencies` (như: `npm install`, `yarn install`, `pnpm install`, ...).
+  - ✅ Công dụng:
+    - Tự động chạy lệnh sau khi cài thư viện xong.
+    - Thường dùng để:
+      - **Generate code** (ví dụ: prisma generate, tailwindcss build, next telemetry disable, ...)
+      - Build lại thư viện.
+      - Copy file, setup cấu hình...
+      - Khắc phục các lệnh bị Vercel hoặc các CI/CD hệ thống bỏ qua.
 
 ## Các lệnh Git hay dùng
 
