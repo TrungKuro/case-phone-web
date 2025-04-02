@@ -8,6 +8,8 @@
 
 - Lệnh chạy dự án - `pnpm run dev`.
 
+- Lệnh build dự án - `pnpm run build`.
+
 ## Các Package sử dụng
 
 ### 1. [shadcn/ui](https://ui.shadcn.com/)
@@ -358,7 +360,7 @@
     - Payload style: _"Snapshot"_
     - Events: _"Checkout -> checkout.session.completed"_
     - Destination Types: _"Webhook Endpoint"_
-    - Endpoint URL: `https://casephone.com/api/webhooks`
+    - Endpoint URL: `https://casephone.com/api/webhooks` ... (lưu ý, để có tên miền `casephone.com` thay vì `localhost:3000` bạn cần <u>deloy app web</u> của bạn)
     - Endpoint Name: _"case-phone"_
   - Sau khi tạo `Event Destination` xong, trong `Destination Details` bạn có thể lấy dữ liệu của `Signing Secret` dùng cho ứng dụng Web của bạn.
 
@@ -374,6 +376,24 @@
   - Xảy ra sự kiện: Ví dụ người dùng đăng ký tài khoản, thanh toán thành công...
   - Gửi thông báo (payload): Ứng dụng A gửi một HTTP request (thường là POST) chứa dữ liệu về sự kiện đó đến URL của ứng dụng B.
   - Ứng dụng B xử lý: Nhận thông tin và xử lý tùy ý (ghi log, cập nhật database, gửi email, v.v.)
+
+### 6. [Vercel](https://vercel.com/)
+
+- Đây là một nền tảng cloud (đám mây) giúp bạn triển khai (deploy) ứng dụng web siêu nhanh, đặc biệt tối ưu cho:
+
+  - ✅ Next.js
+  - ✅ React, Vue, Svelte, Angular,...
+  - ✅ Web tĩnh (HTML/CSS/JS thuần)
+
+- 🛠️ Cách dùng Vercel (quy trình chuẩn):
+  - `Push` code lên GitHub.
+  - Truy cập web Vercel.
+  - Chọn `Add New Project` → Kết nối `GitHub Repo`
+  - Vercel tự động:
+    - Nhận diện framework (Next.js, React, v.v.)
+    - Cấu hình build và output
+    - Tạo link preview (ví dụ: https://your-app.vercel.app)
+  - Mỗi lần bạn _"push code"_ → <u>tự động</u> `Deploy`.
 
 ## Các Layout tùy chỉnh
 
