@@ -350,9 +350,34 @@
 
   - Trên Stripe vào `Developers -> API Keys` để lấy `Secret Key` và cập nhập vào file `Environment Vars (.env)`.
 
+- <u>Step 4</u>:
+
+  - Trên Stripe vào `Developers -> Workbench -> Webhooks` để thêm `Endpoint` cho ứng dụng Web của bạn bằng cách nhấn vào `[+ Add Destination]`.
+  - Ví dụ: bạn thiết lập sau...
+    - Events from: _"Your Account"_
+    - Payload style: _"Snapshot"_
+    - Events: _"Checkout -> checkout.session.completed"_
+    - Destination Types: _"Webhook Endpoint"_
+    - Endpoint URL: `https://casephone.com/api/webhooks`
+    - Endpoint Name: _"case-phone"_
+  - Sau khi tạo `Event Destination` xong, trong `Destination Details` bạn có thể lấy dữ liệu của `Signing Secret` dùng cho ứng dụng Web của bạn.
+
+- 🧐 `WebHooks` là gì?
+
+  - Là một cách để <u>các ứng dụng giao tiếp với nhau tự động và theo thời gian thực</u>.
+  - Hiểu đơn giản, nó giống như một _"cuộc gọi điện thoại"_ mà một ứng dụng thực hiện đến một ứng dụng khác khi có sự kiện xảy ra.
+  - Ví dụ: Giả sử bạn có một website bán hàng. Khi khách hàng đặt đơn hàng mới → Đơn hàng mới được tạo → Website của bạn tự động gửi một `HTTP request (POST)` đến một `URL` được cung cấp bởi hệ thống quản lý kho để thông báo về đơn hàng mới.
+
+- ⚙️ `Webhook` hoạt động như thế nào?
+
+  - Đăng ký webhook: Ứng dụng A (người gửi) cần biết URL của ứng dụng B (người nhận).
+  - Xảy ra sự kiện: Ví dụ người dùng đăng ký tài khoản, thanh toán thành công...
+  - Gửi thông báo (payload): Ứng dụng A gửi một HTTP request (thường là POST) chứa dữ liệu về sự kiện đó đến URL của ứng dụng B.
+  - Ứng dụng B xử lý: Nhận thông tin và xử lý tùy ý (ghi log, cập nhật database, gửi email, v.v.)
+
 ## Các Layout tùy chỉnh
 
-### Recursive Font từ Google Fonts
+### Sử dụng Recursive Font từ Google Fonts
 
 🔹 Recursive có gì đặc biệt?
 
@@ -360,6 +385,51 @@
 - ✅ Hỗ trợ mono-space, sans-serif và casual styles.
 - ✅ Nhẹ, tối ưu cho hiệu suất.
 - ✅ Tương thích tốt với Next.js & Tailwind CSS.
+
+### Copy Paste List
+
+😗 Những thứ mà chúng ta không muốn tự mình gõ ra (vì điều đó thật kinh khủng).
+
+#### UNDERLINE
+
+```
+<svg {...props} viewBox='0 0 687 155'>
+  <g
+    stroke='currentColor'
+    strokeWidth='7'
+    fill='none'
+    fill-rule='evenodd'
+    strokeLinecap='round'
+    strokeLinejoin='round'>
+    <path
+      d='M20 98c27-13.3333333 54-20 81-20 40.5 0 40.5 20 81 20s40.626917-20 81-20 40.123083 20 80.5 20 40.5-20 81-20 40.5 20 81 20 40.626917-20 81-20c26.915389 0 53.748722 6.6666667 80.5 20'
+      opacity='.3'></path>
+    <path d='M20 118c27-13.3333333 54-20 81-20 40.5 0 40.5 20 81 20s40.626917-20 81-20 40.123083 20 80.5 20 40.5-20 81-20 40.5 20 81 20 40.626917-20 81-20c26.915389 0 53.748722 6.6666667 80.5 20'></path>
+  </g>
+</svg>
+```
+
+#### SEPARATOR
+
+```
+<svg
+  className='h-full w-full text-gray-300'
+  viewBox='0 0 12 82'
+  fill='none'
+  preserveAspectRatio='none'>
+  <path
+    d='M0.5 0V31L10.5 41L0.5 51V82'
+    stroke='currentcolor'
+    vectorEffect='non-scaling-stroke'
+  />
+</svg>
+```
+
+#### GRAINY LIGHT
+
+```
+'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFyGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDUgNzkuMTY0NTkwLCAyMDIwLzEyLzA5LTExOjU3OjQ0ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjIuMSAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDI0LTA0LTIxVDE1OjU4OjUxKzAyOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI0LTA0LTIxVDE1OjU4OjUxKzAyOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNC0wNC0yMVQxNTo1ODo1MSswMjowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNDA0ZTNlNi1jMDMxLTljNGYtOTg1NC00ZTUyOTg2ZWMwNzIiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo2ZDlmM2FiMS03YzVhLTQxNDUtYjljYy1l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'
+```
 
 ## Các Error gặp phải
 
@@ -374,12 +444,12 @@ Error: Invalid src prop (https://j7ieebcwkc.ufs.sh/f/z703yu52e70coPGk6vgp1FY7Hsr
 See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
 ```
 
-📌 Nguyên nhân lỗi
+📌 Nguyên nhân lỗi:
 
 - Lỗi này xảy ra khi bạn dùng ảnh từ một domain bên ngoài (ở đây là `j7ieebcwkc.ufs.sh`) nhưng chưa khai báo domain này trong cấu hình của Next.js.
 - Next.js mặc định chỉ cho phép dùng ảnh từ các nguồn đã được cấu hình trước.
 
-🛠️ Cách khắc phục
+🛠️ Cách khắc phục:
 
 - Bước 1: Mở file `next.config.js` (hoặc `next.config.mjs`).
 - Bước 2: Thêm `hostname` `"j7ieebcwkc.ufs.sh"` vào mục `images.domains`.
@@ -396,3 +466,47 @@ images: {
     ],
   },
 ```
+
+## Các lệnh Git hay dùng
+
+### Đồng bộ Git trên VsCode theo GitHub
+
+📌 Đặt vấn đề:
+
+- Ban đầu trên VSCode tôi có nhánh "main" và đang làm việc ở nhánh "A", sau đó tôi `push` nhánh "A" lên GitHub, và `Repo` đó đã `merge` nhánh "A" vào nhánh "main" và đã đồng thời <u>xóa</u> nhánh "A".
+- Bây giờ tôi muốn trên VSCode <u>đồng bộ</u> theo `Repo` đó thì làm thế nào?
+
+🛠️ Cách giải quyết:
+
+- Để đồng bộ VSCode với `Repo` trên GitHub, sau khi nhánh "A" đã được `merge` vào "main" và bị <u>xóa</u> trên GitHub.
+- Bạn cần xóa nhánh "A" <u>cục bộ</u> và `pull` thay đổi mới nhất từ `Remote` (GitHub).
+- Các bước như sau:
+
+  - 🔹 Bước 1: Chuyển về nhánh "main".
+    - Trước tiên, đảm bảo bạn đang ở nhánh "main" trong VSCode.
+    - → `git switch main`
+  - 🔹 Bước 2: Kéo bản mới nhất từ GitHub.
+    - Để đồng bộ code mới nhất từ nhánh "main" trên GitHub.
+    - → `git pull origin main`
+  - 🔹 Bước 3: Xóa nhánh "A" <u>cục bộ</u>.
+    - Bởi vì nhánh "A" trên GitHub đã bị xóa sau khi `merge`, bạn nên xóa nhánh "A" <u>cục bộ</u> để đồng bộ trạng thái.
+    - → `git branch -d A`
+  - 🔹 Bước 4 (tuỳ chọn): Xoá nhánh đã bị xóa từ xa khỏi danh sách.
+    - Dọn sạch các <u>nhánh từ xa</u> (remote branches) không còn tồn tại (như nhánh "A" đã bị xóa trên GitHub) ra khỏi danh sách nhánh của bạn ở local (VSCode).
+    - → `git fetch --prune`
+    - Để xem danh sách nhánh nhập lệnh: → `git branch`.
+
+## Các lưu đồ sử dụng
+
+### Payment Flow
+
+!!! 8:48:35
+
+![Logo](./images/logo.png "Đây là logo của dự án")
+
+Giải thích:
+![Logo]: alt text – dòng chữ thay thế khi ảnh không hiển thị.
+
+(./images/logo.png): đường dẫn đến hình ảnh (có thể là tương đối hoặc tuyệt đối).
+
+"Đây là logo của dự án": title – chú thích hiện ra khi di chuột vào ảnh (tùy chọn).
