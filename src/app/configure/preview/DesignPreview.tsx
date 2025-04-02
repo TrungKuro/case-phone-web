@@ -15,10 +15,23 @@ import { useMutation } from "@tanstack/react-query";
 import { ArrowRight, Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import Confetti from "react-dom-confetti";
+import { createCheckoutSession } from "./action";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import LoginModal from "@/components/LoginModal";
+import { LOCAL_STORAGE_KEYS } from "@/constants/localStorage";
 
 const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
+  const router = useRouter();
+
+  // Lấy ID của sản phẩm và người dùng
+  const { id } = configuration;
+  const { user } = useKindeBrowserClient();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
+
   // Hiển thị "pháo hoa" 😅
-  const [showConfetti, setShowConfetti] = useState(false);
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
   useEffect(() => {
     setShowConfetti(true);
   }, []);
@@ -43,14 +56,43 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   // Tính tổng tiền sản phẩm
   const totalPrice = BASE_PRICE + materialCase!.price + finishCase!.price;
 
-  // ???
-  const {} = useMutation({
+  // Xử lý tiến trình thanh toán
+  const { mutate: createPaymentSession } = useMutation({
     mutationKey: ["get-checkout-session"],
-    mutationFn: 
+    mutationFn: createCheckoutSession,
+    onSuccess: ({ url }) => {
+      if (url) {
+        router.push(url);
+      } else throw new Error("Unable to retrieve payment URL.");
+    },
+    onError: () => {
+      toast.error(
+        <p className="text-red-400 font-bold">Something went wrong</p>,
+        {
+          description: "There was an error on our end. Please try again.",
+        }
+      );
+    },
   });
+
+  // Kiểm tra người dùng có đăng nhập hay không
+  const handleCheckout = () => {
+    if (user) {
+      // Create Payment Session
+      createPaymentSession({
+        configId: configuration.id,
+        price: totalPrice,
+      });
+    } else {
+      // Need to login
+      localStorage.setItem(LOCAL_STORAGE_KEYS.CONFIGURATION_ID, id);
+      setIsLoginModalOpen(true);
+    }
+  };
 
   return (
     <>
+      {/* Chạy hiệu ứng pháo hoa */}
       <div className="absolute inset-0 pointer-events-none select-none flex justify-center overflow-hidden">
         <Confetti
           active={showConfetti}
@@ -60,8 +102,12 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
           }}
         />
       </div>
+
+      {/* Hiện Dialog bắt buộc đăng nhập khi mua hàng */}
+      <LoginModal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} />
+
       <div className="mt-20 grid grid-cols-1 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
-        {/* ??? */}
+        {/* Ảnh Preview sản phẩm */}
         <div className="sm:col-span-4 md:col-span-3 md:row-end-2 md:row-span-2">
           <Phone
             className={cn(`bg-${colorCase}`)}
@@ -69,7 +115,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
           />
         </div>
 
-        {/* ??? */}
+        {/* Thông tin tổng quan sản phẩm */}
         <div className="mt-6 sm:col-span-9 sm:mt-0 md:row-end-1">
           <h3 className="text-3xl font-bold tracking-tight text-gray-900">
             Your {modelPhone} Case
@@ -80,9 +126,8 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
           </div>
         </div>
 
-        {/* ??? */}
+        {/* Thông tin chi tiết sản phẩm */}
         <div className="sm:col-span-12 md:col-span-9 text-base">
-          {/* ??? */}
           <div className="grid grid-cols-1 gap-y-8 border-b border-gray-200 py-8 sm:grid-cols-2 sm:gap-x-6 sm:py-6 md:py-10">
             <div>
               <p className="font-medium text-zinc-950">Highlights</p>
@@ -152,9 +197,11 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
               </div>
             </div>
 
-            {/* ??? */}
             <div className="mt-8 flex justify-end pb-12">
-              <Button className="px-4 sm:px-6 lg:px-8 cursor-pointer">
+              <Button
+                onClick={() => handleCheckout()}
+                className="px-4 sm:px-6 lg:px-8 cursor-pointer"
+              >
                 Check out <ArrowRight className="h-4 w-4 ml-1.5 inline" />
               </Button>
             </div>
