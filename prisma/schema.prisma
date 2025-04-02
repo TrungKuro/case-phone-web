@@ -1,25 +1,23 @@
-// ✅ Cấu hình generator để tạo Prisma Client
+// ✅ Cấu hình Prisma Client
 generator client {
-  provider = "prisma-client-js" // Sử dụng Prisma Client cho JavaScript/TypeScript
+  provider = "prisma-client-js"
 }
 
-// ✅ Cấu hình database (Data source)
+// ✅ Kết nối PostgreSQL qua biến môi trường
 datasource db {
-  provider = "postgresql"         // Chọn PostgreSQL làm database
-  url      = env("DATABASE_URL")  // Lấy URL database từ biến môi trường .env
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-/* ------------------------------------------------------------------------- */
+/* ======================== MODELS ======================== */
 
-// ✅ Định nghĩa Model cho bảng "Configuration"
 model Configuration {
-  id               String  @id @default(cuid())  // ID duy nhất, sử dụng CUID() để tạo tự động
-  width            Int                           // Chiều rộng của cấu hình (bắt buộc)
-  height           Int                           // Chiều cao của cấu hình (bắt buộc)
-  imageUrl         String                        // URL ảnh (bắt buộc)
+  id               String       @id @default(cuid())
+  width            Int
+  height           Int
+  imageUrl         String
+  croppedImageUrl  String?
   
-  croppedImageUrl  String?                       // URL ảnh đã cắt (có thể NULL, vì có dấu `?`)
-
   color            CaseColor?
   model            PhoneModel?
   material         CaseMaterial?
@@ -29,64 +27,66 @@ model Configuration {
 }
 
 model User {
-  id               String  @id @default(cuid())
-  email            String
-  order            Order[]
+  id        String   @id @default(cuid())
+  email     String   @unique
+  orders    Order[]
 
-  createAt         DateTime @default(now())
-  updateAt         DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Order {
-  id                String @id @default(cuid())
+  id                String            @id @default(cuid())
 
   configurationId   String
-  configuration     Configuration @relation(fields: [configurationId], references: [id])
+  configuration     Configuration     @relation(fields: [configurationId], references: [id])
 
   userId            String
-  user              User @relation(fields: [userId], references: [id])
+  user              User              @relation(fields: [userId], references: [id])
 
   shippingAddressId String?
-  shippingAddress   ShippingAddress? @relation(fields: [shippingAddressId], references: [id])
+  shippingAddress   ShippingAddress? @relation("Shipping", fields: [shippingAddressId], references: [id])
 
   billingAddressId  String?
-  billingAddress    BillingAddress? @relation(fields: [billingAddressId], references: [id])
+  billingAddress    BillingAddress?  @relation("Billing", fields: [billingAddressId], references: [id])
 
   amount            Float
-  isPaid            Boolean @default(false)
-  status            OrderStatus @default(awaiting_shipment)
+  isPaid            Boolean           @default(false)
+  status            OrderStatus       @default(awaiting_shipment)
 
-  createdAt         DateTime @default(now())
-  updated           DateTime @updatedAt
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
 }
 
 model ShippingAddress {
-  id               String @id @default(cuid())
-  
-  name             String
-  street           String
-  city             String
-  postalCode       String
-  country          String
-  state            String?
-  phoneNumber      String?
-  orders           Order[]
+  id          String  @id @default(cuid())
+
+  name        String
+  street      String
+  city        String
+  postalCode  String
+  country     String
+  state       String?
+  phoneNumber String?
+
+  orders      Order[] @relation("Shipping")
 }
 
 model BillingAddress {
-  id               String @id @default(cuid())
-  
-  name             String
-  street           String
-  city             String
-  postalCode       String
-  country          String
-  state            String?
-  phoneNumber      String?
-  orders           Order[]
+  id          String  @id @default(cuid())
+
+  name        String
+  street      String
+  city        String
+  postalCode  String
+  country     String
+  state       String?
+  phoneNumber String?
+
+  orders      Order[] @relation("Billing")
 }
 
-/* ------------------------------------------------------------------------- */
+/* ======================== ENUMS ======================== */
 
 enum CaseColor {
   midnight
@@ -132,5 +132,3 @@ enum OrderStatus {
   shipped
   awaiting_shipment
 }
-
-/* ------------------------------------------------------------------------- */

@@ -33,6 +33,7 @@
   - Lệnh cài đặt thêm gói [Component Scroll Area](https://ui.shadcn.com/docs/components/scroll-area) - `pnpm dlx shadcn@latest add scroll-area`.
   - Lệnh cài đặt thêm gói [Component Label](https://ui.shadcn.com/docs/components/label) - `pnpm dlx shadcn@latest add label`.
   - Lệnh cài đặt thêm gói [Component Dropdown Menu](https://ui.shadcn.com/docs/components/dropdown-menu) - `pnpm dlx shadcn@latest add dropdown-menu`.
+  - Lệnh cài đặt thêm gói [Component Dialog](https://ui.shadcn.com/docs/components/dialog) - `pnpm dlx shadcn@latest add dialog`.
 
 - <u>Các lưu ý</u>:
 
@@ -321,7 +322,33 @@
   │   ├── croppedImageUrl | croppedImageUrl   (String?)
   ```
 
-- Để xem nội dung trong `Prisma Schema`, nhập lệnh `npx prisma studio`.
+- Để xem nội dung trong `Prisma Schema`, nhập lệnh `npx prisma studio` để dùng công cụ [Prisma Studio](https://www.prisma.io/docs/orm/tools/prisma-studio).
+
+### 5. [Stripe](https://stripe.com/)
+
+- Đây là một nền tảng thanh toán trực tuyến (payment platform) giúp các website và ứng dụng dễ dàng:
+
+  - Nhận thanh toán từ khách hàng qua thẻ tín dụng/debit (Visa, MasterCard,...).
+  - Hỗ trợ các ví điện tử như Apple Pay, Google Pay.
+  - Xử lý giao dịch định kỳ (subscription) hoặc một lần.
+  - Quản lý hóa đơn, hoàn tiền (refund), chiết khấu, thuế...
+
+- <u>Docs</u>:
+
+  - Sử dụng theo hướng dẫn của [NPM Stripe](https://www.npmjs.com/package/stripe) và [Stripe Docs](https://docs.stripe.com/api?lang=node).
+
+- <u>Step 1</u>:
+
+  - Nhập lệnh `pnpm install stripe`.
+  - Để để cài đặt `SDK` chính thức của `Stripe` cho `Node.js`.
+
+- <u>Step 2</u>:
+
+  - Đăng nhập Stripe và thiết đặt Business (vd: `case-phone-payment`).
+
+- <u>Step 3</u>:
+
+  - Trên Stripe vào `Developers -> API Keys` để lấy `Secret Key` và cập nhập vào file `Environment Vars (.env)`.
 
 ## Các Layout tùy chỉnh
 
