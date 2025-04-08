@@ -36,6 +36,8 @@
   - Lệnh cài đặt thêm gói [Component Label](https://ui.shadcn.com/docs/components/label) - `pnpm dlx shadcn@latest add label`.
   - Lệnh cài đặt thêm gói [Component Dropdown Menu](https://ui.shadcn.com/docs/components/dropdown-menu) - `pnpm dlx shadcn@latest add dropdown-menu`.
   - Lệnh cài đặt thêm gói [Component Dialog](https://ui.shadcn.com/docs/components/dialog) - `pnpm dlx shadcn@latest add dialog`.
+  - Lệnh cài đặt thêm gói [Component Card](https://ui.shadcn.com/docs/components/card) - `pnpm dlx shadcn@latest add card`.
+  - Lệnh cài đặt thêm gói [Component Table](https://ui.shadcn.com/docs/components/table) - `pnpm dlx shadcn@latest add table`.
 
 - <u>Các lưu ý</u>:
 

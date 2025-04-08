@@ -38,7 +38,7 @@ const NavBar = async () => {
                 {/* ADMIN */}
                 {isAdmin ? (
                   <Link
-                    href={ROUTES.AUTH_LOGOUT}
+                    href={ROUTES.DASHBOARD}
                     className={buttonVariants({
                       size: "sm",
                       variant: "ghost",
