@@ -142,6 +142,27 @@
 }
 
 /* ------------------------------------------------------------------------- */
+/*                              CUSTOM TRANSFORM                             */
+/* ------------------------------------------------------------------------- */
+
+@layer utilities {
+  /* Tạo utility class 'phone-skew' để áp dụng hiệu ứng biến đổi 3D tùy chỉnh cho phần tử */
+  .phone-skew {
+    transform: perspective(400px) rotateY(3deg) skewX(11.1deg) skewY(-10.9deg);
+    /* 
+      - perspective(400px):
+          Thiết lập khoảng cách phối cảnh 400px, tạo hiệu ứng chiều sâu 3D cho phần tử.
+      - rotateY(3deg):
+          Xoay phần tử quanh trục Y (ngang) 3 độ, giúp phần tử nghiêng nhẹ về một bên.
+      - skewX(11.1deg):
+          Nghiêng phần tử theo trục X (ngang) 11.1 độ, tạo biến dạng theo chiều ngang.
+      - skewY(-10.9deg):
+          Nghiêng phần tử theo trục Y (dọc) -10.9 độ, tạo biến dạng đối nghịch theo chiều dọc.
+    */
+  }
+}
+
+/* ------------------------------------------------------------------------- */
 /*                               CUSTOM ANIMATE                              */
 /* ------------------------------------------------------------------------- */
 
