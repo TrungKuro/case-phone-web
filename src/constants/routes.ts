@@ -16,9 +16,10 @@ export const ROUTES = {
 
   THANK_YOU: "/thank-you?id=", // + order.id
 
+  DASHBOARD: "/dashboard",
+
   NONE: "#",
 
   // SETTINGS: "/settings",
   // PROFILE: "/profile",
-  // DASHBOARD: "/dashboard",
 } as const;
