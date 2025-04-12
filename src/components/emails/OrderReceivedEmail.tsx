@@ -227,7 +227,7 @@ const OrderReceivedEmail = ({
 
             <Row>
               <Text style={footer.text}>
-                © CasePhone, Inc. All Rights Reserved.
+                © CaseCobra, Inc. All Rights Reserved.
               </Text>
             </Row>
 

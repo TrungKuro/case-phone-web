@@ -1,5 +1,6 @@
 // Import thư viện `clsx` để xử lý điều kiện className
 import { clsx, type ClassValue } from "clsx";
+import { Metadata } from "next";
 
 // Import `twMerge` từ `tailwind-merge` để hợp nhất class của Tailwind mà không bị xung đột
 import { twMerge } from "tailwind-merge";
@@ -33,3 +34,33 @@ export const formatPrice = (price: number) => {
   // ✅ Trả về giá trị số đã được định dạng thành chuỗi tiền tệ
   return formatter.format(price);
 };
+
+export function constructMetadata({
+  title = "CaseCobra custom high-quality phone cases",
+  description = "Create custom high-quality phone cases in seconds",
+  image = "/thumbnail.png",
+  icons = "/favicon.ico",
+}: {
+  title?: string;
+  description?: string;
+  image?: string;
+  icons?: string;
+} = {}): Metadata {
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+      creator: "@Trung_Kuro",
+    },
+    icons,
+  };
+}

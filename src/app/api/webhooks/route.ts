@@ -70,13 +70,13 @@ export async function POST(req: Request) {
       });
 
       await resend.emails.send({
-        from: `CasePhone <${process.env.ADMIN_EMAIL}>`,
+        from: `CaseCobra <${process.env.ADMIN_EMAIL}>`,
         to: [event.data.object.customer_details.email],
         subject: "Thank for your order!",
         react: OrderReceivedEmail({
           orderId,
           orderDate: updatedOrder.createdAt.toLocaleDateString(),
-          
+
           shippingAddress: {
             name: session.customer_details!.name!,
             street: shippingAddress!.line1!,
@@ -86,7 +86,7 @@ export async function POST(req: Request) {
             state: shippingAddress!.state,
             //
             id: "",
-            phoneNumber: null
+            phoneNumber: null,
           },
         }),
       });
