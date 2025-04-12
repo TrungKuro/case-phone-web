@@ -71,7 +71,7 @@ const DesignConfigurator = ({
    * Hàm saveConfiguration() -> Save Cropped Image
    * Hàm _saveConfig()       -> Update Database
    */
-  const { mutate: saveConfig } = useMutation({
+  const { mutate: saveConfig, isPending } = useMutation({
     mutationKey: ["save-config"],
     mutationFn: async (args: SaveConfigArgs) => {
       await Promise.all([saveConfiguration(), _saveConfig(args)]);
@@ -498,6 +498,9 @@ const DesignConfigurator = ({
               <Button
                 size="sm"
                 className="flex-1 cursor-pointer"
+                isLoading={isPending}
+                disabled={isPending}
+                loadingText="Saving"
                 onClick={() => {
                   saveConfig({
                     configId,
