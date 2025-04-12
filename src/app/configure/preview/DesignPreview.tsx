@@ -106,17 +106,17 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
       {/* Hiện Dialog bắt buộc đăng nhập khi mua hàng */}
       <LoginModal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} />
 
-      <div className="mt-20 grid grid-cols-1 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
+      <div className="flex flex-col items-center mt-20 text-sm md:grid sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
         {/* Ảnh Preview sản phẩm */}
-        <div className="sm:col-span-4 md:col-span-3 md:row-end-2 md:row-span-2">
+        <div className="md:col-span-4 lg:col-span-3 md:row-span-2 md:row-end-2">
           <Phone
-            className={cn(`bg-${colorCase}`)}
+            className={cn(`bg-${colorCase}`, "max-w-[150px] md:max-w-full")}
             imgSrc={configuration.croppedImageUrl!}
           />
         </div>
 
         {/* Thông tin tổng quan sản phẩm */}
-        <div className="mt-6 sm:col-span-9 sm:mt-0 md:row-end-1">
+        <div className="mt-6 sm:col-span-9 md:row-end-1">
           <h3 className="text-3xl font-bold tracking-tight text-gray-900">
             Your {modelPhone} Case
           </h3>
