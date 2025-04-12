@@ -62,5 +62,6 @@ export function constructMetadata({
       creator: "@Trung_Kuro",
     },
     icons,
+    metadataBase: new URL(process.env.UPLOADTHING_URL!),
   };
 }
