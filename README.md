@@ -744,6 +744,42 @@ git push
       - Copy file, setup cấu hình...
       - Khắc phục các lệnh bị Vercel hoặc các CI/CD hệ thống bỏ qua.
 
+### 🐞 Invalid callback URL
+
+- Thông báo lỗi:
+  - _"Looks like the allowed callback URLs in your Kinde application don’t include the one below"_
+- Lỗi này là do Kinde chưa cho phép URL hiện tại làm callback sau khi người dùng đăng nhập.
+
+✅ Cách khắc phục:
+
+1. Xác định Callback URL bạn đang sử dụng.
+
+   - Callback URL là URL được Kinde redirect về sau khi user đăng nhập thành công. Ví dụ:
+     - http://localhost:3000/api/auth/callback
+     - https://your-domain.com/api/auth/callback
+   - Kiểm tra xem bạn đang chạy app ở `local` (localhost) hay đã `deploy` (vercel, netlify,...).
+   - Thường trường hợp này _"đã deploy"_ mà quên thông báo cho Kinde.
+
+2. Truy cập trang quản lý ứng dụng Kinde.
+
+   - Đăng nhập vào Kinde Admin (chọn đúng Business).
+   - Vào Settings -> Applications (chọn đúng Application) -> View details -> Callback URLs.
+
+3. Thêm đúng URL vào mục “Allowed callback URLs”.
+
+   - Thêm vào các URL như sau:
+     - http://localhost:3000/api/auth/callback
+     - https://your-production-domain.com/api/auth/callback
+   - Lưu ý:
+     - Nếu bạn chạy trên local → thêm http://localhost:3000/api/auth/callback
+     - Nếu bạn đã deploy → thêm URL thật của bạn (https://myapp.vercel.app/api/auth/callback)
+
+4. Thêm đúng URL vào mục "Allowed logout redirect URLs".
+
+   - Tương tự như trên:
+     - http://localhost:3000
+     - https://your-production-domain.com
+
 ## Các lệnh Git hay dùng
 
 ### Đồng bộ Git trên VsCode theo GitHub
