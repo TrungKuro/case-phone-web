@@ -54,8 +54,8 @@ const PhonePreview = ({
         }}
       >
         <Image
-          alt="Case Phone Preview"
           src={croppedImageUrl}
+          alt="Case Phone Preview"
           width={renderedDimensions.width / (3000 / 637)}
           height={renderedDimensions.height / (2001 / 430)}
           className={cn(
@@ -67,8 +67,8 @@ const PhonePreview = ({
 
       <div className="relative z-40 h-full w-full">
         <Image
-          alt="Clear Phone"
           src={clearPhone}
+          alt="Clear Phone"
           className="pointer-events-none h-full w-full rounded-md antialiased"
         />
       </div>

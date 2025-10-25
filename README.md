@@ -57,38 +57,40 @@
 `Step Page`
 
 - Step 1: Add Image
-  <table>
-    <tr>
-      <td align="center" width="33.33%">
-        <img src="docs/Step1-1.webp" alt="Step1 1" width="100%" />
-      </td>
-      <td align="center" width="33.33%">
-        <img src="docs/Step1-2.webp" alt="Step1 2" width="100%" />
-      </td>
-      <td align="center" width="33.33%">
-        <img src="docs/Step1-3.webp" alt="Step1 3" width="100%" />
-      </td>
-    </tr>
-  </table>
+<table>
+  <tr>
+    <td align="center" width="33.33%">
+      <img src="docs/Step1-1.webp" alt="Step1 1" width="100%" />
+    </td>
+    <td align="center" width="33.33%">
+      <img src="docs/Step1-2.webp" alt="Step1 2" width="100%" />
+    </td>
+    <td align="center" width="33.33%">
+      <img src="docs/Step1-3.webp" alt="Step1 3" width="100%" />
+    </td>
+  </tr>
+</table>
+
 - Step 2: Customize design
-  <table>
-    <tr>
-      <td align="center" width="50%">
-        <img src="docs/Step2-1.webp" alt="Step2 1" width="100%" />
-      </td>
-      <td align="center" width="50%">
-        <img src="docs/Step2-2.webp" alt="Step2 2" width="100%" />
-      </td>
-    </tr>
-  </table>
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/Step2-1.webp" alt="Step2 1" width="100%" />
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/Step2-2.webp" alt="Step2 2" width="100%" />
+    </td>
+  </tr>
+</table>
+
 - Step 3: Summary
-  <table>
-    <tr>
-      <td align="center" width="100%">
-        <img src="docs/Step3-1.webp" alt="Step3 1" width="100%" />
-      </td>
-    </tr>
-  </table>
+<table>
+  <tr>
+    <td align="center" width="100%">
+      <img src="docs/Step3-1.webp" alt="Step3 1" width="100%" />
+    </td>
+  </tr>
+</table>
 
 `Service Page`
 
@@ -118,8 +120,8 @@
 
 | Page           | Image                                                                    |
 | -------------- | ------------------------------------------------------------------------ |
-| Dashboard Page | <img src="docs/Dashboard-Page.webp" alt="Dashboard Page" width="100%" /> |
 | Admin Page     | <img src="docs/Admin-Page.webp" alt="Admin Page" width="100%" />         |
+| Dashboard Page | <img src="docs/Dashboard-Page.webp" alt="Dashboard Page" width="100%" /> |
 
 ## ✨ Features
 

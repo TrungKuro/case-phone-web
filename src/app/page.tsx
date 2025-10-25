@@ -189,9 +189,9 @@ export default function Home() {
               {/* User Info */}
               <div className="mt-2 flex gap-4">
                 <Image
-                  className="h-12 w-12 rounded-full object-cover"
                   src={user1}
                   alt="user-1"
+                  className="h-12 w-12 rounded-full object-cover"
                 />
                 <div className="flex flex-col">
                   <p className="font-semibold">Jonathan</p>
@@ -231,9 +231,9 @@ export default function Home() {
               {/* User Info */}
               <div className="mt-2 flex gap-4">
                 <Image
-                  className="h-12 w-12 rounded-full object-cover"
                   src={user4}
                   alt="user-4"
+                  className="h-12 w-12 rounded-full object-cover"
                 />
                 <div className="flex flex-col">
                   <p className="font-semibold">Josh</p>

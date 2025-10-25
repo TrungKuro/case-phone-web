@@ -34,10 +34,11 @@ const Phone = ({ imgSrc, className, dark = false, ...props }: PhoneProps) => {
       />
       <div className="absolute inset-0 -z-10">
         <Image
-          fill // 👈 thêm thuộc tính fill ở đây
-          className="object-cover"
           src={imgSrc}
           alt="overlaying phone image"
+          fill // 👈 thêm thuộc tính fill ở đây
+          sizes="100vh"
+          className="object-cover"
         />
       </div>
     </div>

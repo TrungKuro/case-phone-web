@@ -256,9 +256,10 @@ const DesignConfigurator = ({
             className="pointer-events-none relative z-50 aspect-[896/1831] w-full"
           >
             <Image
-              fill
-              alt="phone image"
               src={template}
+              alt="phone image"
+              fill
+              sizes="100vh"
               className="pointer-events-none z-50 select-none"
             />
           </AspectRatio>
@@ -307,8 +308,9 @@ const DesignConfigurator = ({
           <div className="relative h-full w-full">
             <Image
               src={imageUrl}
-              fill
               alt="your image"
+              fill
+              sizes="100vh"
               className="pointer-events-none"
             />
           </div>
