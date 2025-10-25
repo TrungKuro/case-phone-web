@@ -71,8 +71,8 @@ function Review({ imgSrc, className, ...props }: ReviewProps) {
   return (
     <div
       className={cn(
-        "animate-fade-in opacity-0 mx-4 my-8 p-6 rounded-[2.25rem] bg-white shadow-xl shadow-slate-900/5",
-        className
+        "animate-fade-in mx-4 my-8 rounded-[2.25rem] bg-white p-6 opacity-0 shadow-xl shadow-slate-900/5",
+        className,
       )}
       style={{ animationDelay }}
       {...props}
@@ -140,7 +140,7 @@ function ReviewGrid() {
   return (
     <div
       ref={containerRef}
-      className="relative -mx-4 mt-16 sm:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-[49rem] max-h-[150vh] items-start overflow-hidden px-4"
+      className="relative -mx-4 mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3"
     >
       {isInView ? (
         <>
@@ -169,8 +169,8 @@ function ReviewGrid() {
           />
         </>
       ) : null}
-      <div className="absolute inset-x-0 top-0 h-32 pointer-events-none bg-gradient-to-b from-slate-100" />
-      <div className="absolute inset-x-0 bottom-0 h-32 pointer-events-none bg-gradient-to-t from-slate-100" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-slate-100" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-100" />
     </div>
   );
 }
@@ -184,7 +184,7 @@ export function Reviews() {
         aria-hidden="true"
         src={whatPeopleBuy}
         alt="what-people-are-buying"
-        className="absolute -left-32 top-1/3 hidden xl:block select-none"
+        className="absolute top-1/3 -left-32 hidden select-none xl:block"
       />
       <ReviewGrid />
     </MaxWidthWrapper>

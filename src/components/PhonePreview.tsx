@@ -60,16 +60,16 @@ const PhonePreview = ({
           height={renderedDimensions.height / (2001 / 430)}
           className={cn(
             "phone-skew relative z-20 rounded-t-[15px] rounded-b-[10px] md:rounded-t-[30px] md:rounded-b-[20px]",
-            caseBackgroundColor
+            caseBackgroundColor,
           )}
         />
       </div>
 
-      <div className="h-full w-full relative z-40">
+      <div className="relative z-40 h-full w-full">
         <Image
           alt="Clear Phone"
           src={clearPhone}
-          className="h-full w-full rounded-md pointer-events-none antialiased"
+          className="pointer-events-none h-full w-full rounded-md antialiased"
         />
       </div>
     </AspectRatio>

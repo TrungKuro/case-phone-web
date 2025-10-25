@@ -22,15 +22,15 @@ const Phone = ({ imgSrc, className, dark = false, ...props }: PhoneProps) => {
   return (
     <div
       className={cn(
-        "relative z-50 pointer-events-none overflow-hidden",
-        className
+        "pointer-events-none relative z-50 overflow-hidden",
+        className,
       )}
       {...props}
     >
       <Image
         src={dark ? phoneDarkEdges : phoneLightEdges}
         alt="phone-edges"
-        className="z-50 pointer-events-none select-none"
+        className="pointer-events-none z-50 select-none"
       />
       <div className="absolute inset-0 -z-10">
         <Image

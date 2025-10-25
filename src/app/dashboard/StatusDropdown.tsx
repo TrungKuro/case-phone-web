@@ -43,10 +43,10 @@ const StatusDropdown = ({
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className="flex items-center justify-between w-52"
+          className="flex w-52 items-center justify-between"
         >
           {LABEL_MAP[orderStatus]}
-          <ChevronsUpDown className="h-4 w-4 ml-2 shrink-0 opacity-50" />
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </DropdownMenuTrigger>
 
@@ -56,10 +56,10 @@ const StatusDropdown = ({
           <DropdownMenuItem
             key={status}
             className={cn(
-              "flex items-center gap-1 p-2.5 cursor-default text-sm hover:bg-zinc-100",
+              "flex cursor-default items-center gap-1 p-2.5 text-sm hover:bg-zinc-100",
               {
                 "bg-zinc-100": orderStatus === status,
-              }
+              },
             )}
             onClick={() => {
               mutate({ id, newStatus: status as OrderStatus });
@@ -67,8 +67,8 @@ const StatusDropdown = ({
           >
             <Check
               className={cn(
-                "h-4 w-4 mr-2 text-primary",
-                orderStatus === status ? "opacity-100" : "opacity-0"
+                "mr-2 h-4 w-4 text-primary",
+                orderStatus === status ? "opacity-100" : "opacity-0",
               )}
             />
             {LABEL_MAP[status as OrderStatus]}

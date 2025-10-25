@@ -40,7 +40,7 @@ const Page = () => {
       </p>,
       {
         description: "Please choose a PNG, JPG, or JPEG image instead.",
-      }
+      },
     );
   };
 
@@ -54,13 +54,13 @@ const Page = () => {
   return (
     <div
       className={cn(
-        "relative flex flex-1 flex-col justify-center items-center w-full h-full my-16 p-2 rounded-xl lg:rounded-2xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10",
+        "relative my-16 flex h-full w-full flex-1 flex-col items-center justify-center rounded-xl bg-gray-900/5 p-2 ring-1 ring-gray-900/10 ring-inset lg:rounded-2xl",
         {
           "bg-blue-900/20 ring-blue-900/25": isDragOver,
-        }
+        },
       )}
     >
-      <div className="relative flex flex-1 flex-col items-center justify-center w-full">
+      <div className="relative flex w-full flex-1 flex-col items-center justify-center">
         <Dropzone
           onDropRejected={onDropRejected}
           onDropAccepted={onDropAccepted}
@@ -74,28 +74,28 @@ const Page = () => {
         >
           {({ getRootProps, getInputProps }) => (
             <div
-              className="flex flex-1 flex-col items-center justify-center w-full h-full"
+              className="flex h-full w-full flex-1 flex-col items-center justify-center"
               {...getRootProps()}
             >
               <input {...getInputProps()} />
               {isDragOver ? (
-                <MousePointerSquareDashed className="h-6 w-6 mb-2 text-zinc-500" />
+                <MousePointerSquareDashed className="mb-2 h-6 w-6 text-zinc-500" />
               ) : isUploading || isPending ? (
-                <Loader2 className="animate-spin h-6 w-6 mb-2 text-zinc-500" />
+                <Loader2 className="mb-2 h-6 w-6 animate-spin text-zinc-500" />
               ) : (
                 <Image
-                  className="h-6 w-6 mb-2 text-zinc-500"
+                  className="mb-2 h-6 w-6 text-zinc-500"
                   role="img"
                   aria-label="Icon Image (SVG)"
                 />
               )}
-              <div className="flex flex-col justify-center mb-2 text-sm text-zinc-700">
+              <div className="mb-2 flex flex-col justify-center text-sm text-zinc-700">
                 {isUploading ? (
                   <div className="flex flex-col items-center">
                     <p>Uploading...</p>
                     <Progress
                       value={uploadProgress}
-                      className="w-40 mt-2 bg-gray-300"
+                      className="mt-2 w-40 bg-gray-300"
                     />
                   </div>
                 ) : isPending ? (

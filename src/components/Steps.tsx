@@ -31,11 +31,11 @@ const Steps = () => {
   const pathName = usePathname();
 
   return (
-    <ol className="rounded-md lg:rounded-none bg-white lg:flex lg:border-l lg:border-r lg:border-gray-200">
+    <ol className="rounded-md bg-white lg:flex lg:rounded-none lg:border-r lg:border-l lg:border-gray-200">
       {STEPS.map((step, i) => {
         const isCurrent = pathName.endsWith(step.url);
         const isCompleted = STEPS.slice(i + 1).some((step) =>
-          pathName.endsWith(step.url)
+          pathName.endsWith(step.url),
         );
         const imgPath = [snake1, snake2, snake3][i] ?? snake1;
 
@@ -45,11 +45,11 @@ const Steps = () => {
               {/* Progress Bar */}
               <span
                 className={cn(
-                  "absolute left-0 top-0 h-full w-1 bg-zinc-400 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full",
+                  "absolute top-0 left-0 h-full w-1 bg-zinc-400 lg:top-auto lg:bottom-0 lg:h-1 lg:w-full",
                   {
                     "bg-zinc-700": isCurrent,
                     "bg-primary": isCompleted,
-                  }
+                  },
                 )}
                 aria-hidden="true"
               />
@@ -58,7 +58,7 @@ const Steps = () => {
               <span
                 className={cn(
                   i !== 0 ? "lg:pl-9" : "",
-                  "flex items-center px-6 py-4 text-sm font-medium"
+                  "flex items-center px-6 py-4 text-sm font-medium",
                 )}
               >
                 {/* Image of every Step */}
@@ -67,17 +67,17 @@ const Steps = () => {
                     src={imgPath}
                     alt={`step ${i + 1}`}
                     className={cn(
-                      "flex items-center justify-center h-20 w-20 object-contain",
+                      "flex h-20 w-20 items-center justify-center object-contain",
                       {
                         "border-none": isCompleted,
                         "border-zinc-700": isCurrent,
-                      }
+                      },
                     )}
                   />
                 </span>
 
                 {/* Detail of every Step */}
-                <span className="ml-4 mt-0.5 h-full min-w-0 flex flex-col justify-center">
+                <span className="mt-0.5 ml-4 flex h-full min-w-0 flex-col justify-center">
                   <span
                     className={cn("text-sm font-semibold text-zinc-700", {
                       "text-primary": isCompleted,

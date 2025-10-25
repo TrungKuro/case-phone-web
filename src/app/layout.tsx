@@ -48,8 +48,8 @@ export default function RootLayout({
       >
         {/* ------------------------------ PAGE ----------------------------- */}
         <NavBar />
-        <main className="grainy-light flex flex-col min-h-[calc(100vh-3.5rem-1px)]">
-          <div className="flex flex-1 flex-col h-full">
+        <main className="grainy-light flex min-h-[calc(100vh-3.5rem-1px)] flex-col">
+          <div className="flex h-full flex-1 flex-col">
             <Providers>{children}</Providers>
           </div>
           <Footer />

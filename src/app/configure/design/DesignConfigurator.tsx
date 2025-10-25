@@ -78,10 +78,10 @@ const DesignConfigurator = ({
     },
     onError: () => {
       toast.error(
-        <p className="text-red-400 font-bold">Something went wrong</p>,
+        <p className="font-bold text-red-400">Something went wrong</p>,
         {
           description: "There was an error on our end. Please try again.",
-        }
+        },
       );
     },
     onSuccess: () => {
@@ -181,7 +181,7 @@ const DesignConfigurator = ({
         actualY,
         // Kích thước của Image
         renderedDimension.width,
-        renderedDimension.height
+        renderedDimension.height,
       );
 
       /* ------------------------------------------------------------------- */
@@ -208,11 +208,11 @@ const DesignConfigurator = ({
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       toast.error(
-        <p className="text-red-400 font-bold">Something went wrong</p>,
+        <p className="font-bold text-red-400">Something went wrong</p>,
         {
           description:
             "There was a problem saving your config, please try again.",
-        }
+        },
       );
     }
   }
@@ -241,36 +241,36 @@ const DesignConfigurator = ({
   /* ----------------------------------------------------------------------- */
 
   return (
-    <div className="relative grid grid-cols-1 lg:grid-cols-3 mt-20 mb-20 pb-20">
+    <div className="relative mt-20 mb-20 grid grid-cols-1 pb-20 lg:grid-cols-3">
       {/* Preview Display Area */}
       <div
         ref={containerRef}
-        className="relative col-span-2 flex items-center justify-center h-[37.5rem] w-full max-w-4xl overflow-hidden rounded-lg border-2 border-dashed border-gray-300 p-12 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className="relative col-span-2 flex h-[37.5rem] w-full max-w-4xl items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-gray-300 p-12 text-center focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
       >
         {/* Drag and Drop Area */}
-        <div className="relative pointer-events-none w-60 aspect-[896/1831] bg-transparent">
+        <div className="pointer-events-none relative aspect-[896/1831] w-60 bg-transparent">
           {/* Display Phone Case Frame */}
           <AspectRatio
             ref={phoneCaseRef}
             ratio={896 / 1831}
-            className="relative z-50 pointer-events-none w-full aspect-[896/1831]"
+            className="pointer-events-none relative z-50 aspect-[896/1831] w-full"
           >
             <Image
               fill
               alt="phone image"
               src={template}
-              className="z-50 pointer-events-none select-none"
+              className="pointer-events-none z-50 select-none"
             />
           </AspectRatio>
 
           {/* Layout UI of this Area */}
-          <div className="absolute inset-0 left-[3px] top-px right-[3px] bottom-px z-40 rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)]" />
+          <div className="absolute inset-0 top-px right-[3px] bottom-px left-[3px] z-40 rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)]" />
 
           {/* Display Phone Case Color */}
           <div
             className={cn(
-              "absolute inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px]",
-              `bg-${options.color.tw}`
+              "absolute inset-0 top-px right-[3px] bottom-px left-[3px] rounded-[32px]",
+              `bg-${options.color.tw}`,
             )}
           />
         </div>
@@ -304,7 +304,7 @@ const DesignConfigurator = ({
             topLeft: <HandleComponent />,
           }}
         >
-          <div className="relative w-full h-full">
+          <div className="relative h-full w-full">
             <Image
               src={imageUrl}
               fill
@@ -316,13 +316,13 @@ const DesignConfigurator = ({
       </div>
 
       {/* Design Configuration Area */}
-      <div className="flex flex-col w-full h-[37.5rem] col-span-full lg:col-span-1 bg-white">
+      <div className="col-span-full flex h-[37.5rem] w-full flex-col bg-white lg:col-span-1">
         {/* Customize your Case */}
         <ScrollArea className="relative flex-1 overflow-auto">
           {/* Fade Effect Above */}
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-white pointer-events-none"
+            className="pointer-events-none absolute inset-x-0 top-0 z-10 h-12 bg-gradient-to-b from-white"
           />
           {/* Content */}
           <div className="px-8 pt-8 pb-12">
@@ -331,9 +331,9 @@ const DesignConfigurator = ({
               Customize your case
             </h2>
             {/* Divider */}
-            <div className="w-full h-px my-6 bg-zinc-200" />
+            <div className="my-6 h-px w-full bg-zinc-200" />
             {/* Option */}
-            <div className="relative mt-4 h-full flex flex-col justify-between">
+            <div className="relative mt-4 flex h-full flex-col justify-between">
               <div className="flex flex-col gap-6">
                 {/* Select Color */}
                 <RadioGroup
@@ -343,24 +343,24 @@ const DesignConfigurator = ({
                   }}
                 >
                   <Label>Color: {options.color.label}</Label>
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-3 mt-3">
+                  <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-3">
                     {COLORS.map((color) => (
                       <Radio
                         key={color.label}
                         value={color}
                         className={({ checked }) =>
                           cn(
-                            "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full border-2 border-transparent p-0.5 focus:outline-none focus:ring-0 active:outline-none active:ring-0",
+                            "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full border-2 border-transparent p-0.5 focus:ring-0 focus:outline-none active:ring-0 active:outline-none",
                             {
                               [`border-${color.tw}`]: checked,
-                            }
+                            },
                           )
                         }
                       >
                         <span
                           className={cn(
                             `bg-${color.tw}`,
-                            "h-8 w-8 rounded-full border border-black/10"
+                            "h-8 w-8 rounded-full border border-black/10",
                           )}
                         />
                       </Radio>
@@ -368,17 +368,17 @@ const DesignConfigurator = ({
                   </div>
                 </RadioGroup>
                 {/* Select Model */}
-                <div className="relative flex flex-col w-full gap-3">
+                <div className="relative flex w-full flex-col gap-3">
                   <Label>Model</Label>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button
                         variant="outline"
                         role="combobox"
-                        className="w-full justify-between cursor-pointer"
+                        className="w-full cursor-pointer justify-between"
                       >
                         {options.model.label}
-                        <ChevronsUpDown className="h-4 w-4 shrink-0 ml-2 opacity-50" />
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
@@ -386,11 +386,11 @@ const DesignConfigurator = ({
                         <DropdownMenuItem
                           key={model.label}
                           className={cn(
-                            "flex items-center gap-1 p-1.5 text-sm cursor-default hover:bg-zinc-100",
+                            "flex cursor-default items-center gap-1 p-1.5 text-sm hover:bg-zinc-100",
                             {
                               "bg-zinc-100":
                                 model.label === options.model.label,
-                            }
+                            },
                           )}
                           onClick={() => {
                             setOptions((prev) => ({ ...prev, model }));
@@ -398,10 +398,10 @@ const DesignConfigurator = ({
                         >
                           <Check
                             className={cn(
-                              "h-4 w-4 mr-2",
+                              "mr-2 h-4 w-4",
                               model.label === options.model.label
                                 ? "opacity-100"
-                                : "opacity-0"
+                                : "opacity-0",
                             )}
                           />
                           {model.label}
@@ -433,10 +433,10 @@ const DesignConfigurator = ({
                             value={option}
                             className={({ checked }) =>
                               cn(
-                                "relative block cursor-pointer rounded-lg border-2 border-zinc-200 bg-white px-6 py-4 shadow-sm outline-none ring-0 focus:outline-none focus:ring-0 sm:flex sm:justify-between",
+                                "relative block cursor-pointer rounded-lg border-2 border-zinc-200 bg-white px-6 py-4 shadow-sm ring-0 outline-none focus:ring-0 focus:outline-none sm:flex sm:justify-between",
                                 {
                                   "border-primary": checked,
-                                }
+                                },
                               )
                             }
                           >
@@ -472,7 +472,7 @@ const DesignConfigurator = ({
                         ))}
                       </div>
                     </RadioGroup>
-                  )
+                  ),
                 )}
               </div>
             </div>
@@ -480,19 +480,19 @@ const DesignConfigurator = ({
           {/* Fade Effect Below */}
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 z-10 h-12 bg-gradient-to-t from-white pointer-events-none"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-12 bg-gradient-to-t from-white"
           />
         </ScrollArea>
 
         {/* Price & Continue */}
-        <div className="w-full h-16 bg-white px-8">
-          <div className="w-full h-px bg-zinc-200" />
-          <div className="flex items-center justify-end w-full h-full">
-            <div className="flex items-center w-full gap-6">
+        <div className="h-16 w-full bg-white px-8">
+          <div className="h-px w-full bg-zinc-200" />
+          <div className="flex h-full w-full items-center justify-end">
+            <div className="flex w-full items-center gap-6">
               <p className="font-medium whitespace-nowrap">
                 {formatPrice(
                   (BASE_PRICE + options.finish.price + options.material.price) /
-                    100
+                    100,
                 )}
               </p>
               <Button
@@ -512,7 +512,7 @@ const DesignConfigurator = ({
                 }}
               >
                 Continue
-                <ArrowRight className="inline h-4 w-4 ml-1.5" />
+                <ArrowRight className="ml-1.5 inline h-4 w-4" />
               </Button>
             </div>
           </div>

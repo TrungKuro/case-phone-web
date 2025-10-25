@@ -31,24 +31,24 @@ export default function Home() {
     <div className="bg-slate-50">
       {/* ------------------------------- ... ------------------------------- */}
       <section>
-        <MaxWidthWrapper className="pt-10 pb-24 sm:pb-32 lg:pt-24 lg:pb-52 lg:grid lg:grid-cols-3 lg:gap-x-0 xl:pt-32 xl:gap-x-8">
+        <MaxWidthWrapper className="pt-10 pb-24 sm:pb-32 lg:grid lg:grid-cols-3 lg:gap-x-0 lg:pt-24 lg:pb-52 xl:gap-x-8 xl:pt-32">
           {/* Intro Product */}
           <div className="col-span-2 px-6 lg:px-0 lg:pt-4">
-            <div className="relative mx-auto flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="relative mx-auto flex flex-col items-center text-center lg:items-start lg:text-left">
               {/* Logo */}
-              <div className="absolute left-0 -top-20 w-28 hidden lg:block">
+              <div className="absolute -top-20 left-0 hidden w-28 lg:block">
                 <Image src={snake1} alt={"snake 1"} className="w-full" />
               </div>
 
               {/* Heading */}
-              <h1 className="relative w-fit mt-16 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight !leading-tight text-balance text-gray-900">
+              <h1 className="relative mt-16 w-fit text-5xl !leading-tight font-bold tracking-tight text-balance text-gray-900 md:text-6xl lg:text-7xl">
                 Your Image on a{" "}
                 <span className="bg-green-600 px-2 text-white">Custom</span>{" "}
                 Phone Case
               </h1>
 
               {/* Subheading */}
-              <p className="mt-8 max-w-prose text-lg text-center lg:text-left md:text-wrap text-balance lg:pr-10">
+              <p className="mt-8 max-w-prose text-center text-lg text-balance md:text-wrap lg:pr-10 lg:text-left">
                 Capture your favorite memories with your own,
                 <span className="font-semibold"> one-of-one </span> phone case.
                 CaseCobra allows you to protect your memories, not just your
@@ -56,7 +56,7 @@ export default function Home() {
               </p>
 
               {/* Bullet Points */}
-              <ul className="mt-8 flex flex-col items-center sm:items-start space-y-2 text-left font-medium">
+              <ul className="mt-8 flex flex-col items-center space-y-2 text-left font-medium sm:items-start">
                 <div className="space-y-2">
                   <li className="flex items-center gap-1.5 text-left">
                     <Check className="h-5 w-5 shrink-0 text-green-600" />
@@ -74,7 +74,7 @@ export default function Home() {
               </ul>
 
               {/* Social Proof */}
-              <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
+              <div className="mt-12 flex flex-col items-center gap-5 sm:flex-row sm:items-start">
                 {/* Customer Avatar Images */}
                 <div className="flex -space-x-4">
                   <Image
@@ -105,13 +105,13 @@ export default function Home() {
                 </div>
 
                 {/* Star Ratings */}
-                <div className="flex flex-col items-center sm:items-start justify-between">
+                <div className="flex flex-col items-center justify-between sm:items-start">
                   <div className="flex gap-0.5">
-                    <Star className="h-4 w-4 text-green-600 fill-green-600" />
-                    <Star className="h-4 w-4 text-green-600 fill-green-600" />
-                    <Star className="h-4 w-4 text-green-600 fill-green-600" />
-                    <Star className="h-4 w-4 text-green-600 fill-green-600" />
-                    <Star className="h-4 w-4 text-green-600 fill-green-600" />
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
                   </div>
                   <p>
                     <span className="font-semibold">1.250</span> happy customers
@@ -122,17 +122,17 @@ export default function Home() {
           </div>
 
           {/* Product Illustration */}
-          <div className="col-span-full lg:col-span-1 w-full h-fit flex justify-center px-8 sm:px-16 md:px-0 mt-32 lg:mt-20 lg:mx-0">
+          <div className="col-span-full mt-32 flex h-fit w-full justify-center px-8 sm:px-16 md:px-0 lg:col-span-1 lg:mx-0 lg:mt-20">
             <div className="relative md:max-w-xl">
               <Image
                 src={yourImage}
                 alt="your-image"
-                className="absolute left-56 -top-20 w-40 lg:w-52 select-none hidden sm:block lg:hidden xl:block"
+                className="absolute -top-20 left-56 hidden w-40 select-none sm:block lg:hidden lg:w-52 xl:block"
               />
               <Image
                 src={line}
                 alt="line"
-                className="absolute -left-6 -bottom-6 w-20 select-none"
+                className="absolute -bottom-6 -left-6 w-20 select-none"
               />
               <Phone className="w-64" imgSrc={testimonial1} />
             </div>
@@ -144,33 +144,33 @@ export default function Home() {
       <section className="bg-slate-100 py-24">
         <MaxWidthWrapper className="flex flex-col items-center gap-16 sm:gap-32">
           {/* Heading & Logo */}
-          <div className="flex flex-col lg:flex-row items-center gap-4 sm:gap-6">
-            <h2 className="order-1 mt-2 text-center text-balance text-5xl md:text-6xl font-bold tracking-tight !leading-tight text-gray-900">
+          <div className="flex flex-col items-center gap-4 sm:gap-6 lg:flex-row">
+            <h2 className="order-1 mt-2 text-center text-5xl !leading-tight font-bold tracking-tight text-balance text-gray-900 md:text-6xl">
               What our{" "}
               <span className="relative px-2">
                 customers
-                <Icons.underline className="absolute inset-x-0 -bottom-6 hidden sm:block pointer-events-none text-green-500" />
+                <Icons.underline className="pointer-events-none absolute inset-x-0 -bottom-6 hidden text-green-500 sm:block" />
               </span>{" "}
               say
             </h2>
             <Image
               src={snake2}
               alt="snake 2"
-              className="w-24 order-0 lg:order-2"
+              className="order-0 w-24 lg:order-2"
             />
           </div>
 
           {/* Customer Reviews */}
-          <div className="mx-auto lg:mx-0 max-w-2xl lg:max-w-none grid grid-cols-1 lg:grid-cols-2 gap-y-16 px-4">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             {/* Reviews 1 */}
-            <div className="flex flex-col flex-auto gap-4 lg:pr-8 xl:pr-20">
+            <div className="flex flex-auto flex-col gap-4 lg:pr-8 xl:pr-20">
               {/* Star Rating */}
-              <div className="flex gap-0.5 mb-2">
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
+              <div className="mb-2 flex gap-0.5">
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
               </div>
 
               {/* Testimonial Text */}
@@ -178,7 +178,7 @@ export default function Home() {
                 <p>
                   {'"'}The case feels durable and I even got a compliment on the
                   design. Had the case for two and a half months now and{" "}
-                  <span className="p-0.5 bg-slate-800 text-white">
+                  <span className="bg-slate-800 p-0.5 text-white">
                     the image is super clear
                   </span>
                   , on the case I had before, the image started fading into
@@ -187,7 +187,7 @@ export default function Home() {
               </div>
 
               {/* User Info */}
-              <div className="flex mt-2 gap-4">
+              <div className="mt-2 flex gap-4">
                 <Image
                   className="h-12 w-12 rounded-full object-cover"
                   src={user1}
@@ -204,14 +204,14 @@ export default function Home() {
             </div>
 
             {/* Reviews 2 */}
-            <div className="flex flex-col flex-auto gap-4 lg:pr-8 xl:pr-20">
+            <div className="flex flex-auto flex-col gap-4 lg:pr-8 xl:pr-20">
               {/* Star Rating */}
-              <div className="flex gap-0.5 mb-2">
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
-                <Star className="h-5 w-5 text-green-600 fill-green-600" />
+              <div className="mb-2 flex gap-0.5">
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
+                <Star className="h-5 w-5 fill-green-600 text-green-600" />
               </div>
 
               {/* Testimonial Text */}
@@ -221,7 +221,7 @@ export default function Home() {
                   pocket and that led to some pretty heavy scratchmarks on all
                   of my last phone cases. This one, besides a barely noticeable
                   scratch on the corner,{" "}
-                  <span className="p-0.5 bg-slate-800 text-white">
+                  <span className="bg-slate-800 p-0.5 text-white">
                     looks brand new after about half a year
                   </span>
                   . I dig it.{'"'}
@@ -229,7 +229,7 @@ export default function Home() {
               </div>
 
               {/* User Info */}
-              <div className="flex mt-2 gap-4">
+              <div className="mt-2 flex gap-4">
                 <Image
                   className="h-12 w-12 rounded-full object-cover"
                   src={user4}
@@ -259,9 +259,9 @@ export default function Home() {
           {/* Heading */}
           <div className="mb-12 px-6 lg:px-8">
             <div className="mx-auto max-w-2xl sm:text-center">
-              <h2 className="order-1 mt-2 text-center text-balance text-5xl md:text-6xl font-bold tracking-tight !leading-tight text-gray-900">
+              <h2 className="order-1 mt-2 text-center text-5xl !leading-tight font-bold tracking-tight text-balance text-gray-900 md:text-6xl">
                 Upload your photo and get{" "}
-                <span className="relative bg-green-600 text-white px-2">
+                <span className="relative bg-green-600 px-2 text-white">
                   your own case
                 </span>{" "}
                 now
@@ -271,9 +271,9 @@ export default function Home() {
 
           {/* Upload Image and Preview Image on Case */}
           <div className="mx-auto max-w-6xl px-6 lg:px-8">
-            <div className="relative flex flex-col md:grid grid-cols-2 items-center gap-40">
+            <div className="relative flex grid-cols-2 flex-col items-center gap-40 md:grid">
               {/* Input */}
-              <div className="relative h-80 md:h-full w-full max-w-sm md:justify-self-end rounded-xl lg:rounded-2xl bg-gray-900/5 ring-inset ring-gray-900/10">
+              <div className="relative h-80 w-full max-w-sm rounded-xl bg-gray-900/5 ring-gray-900/10 ring-inset md:h-full md:justify-self-end lg:rounded-2xl">
                 <Image
                   src={horse}
                   alt="horse"
@@ -284,7 +284,7 @@ export default function Home() {
               <Image
                 src={arrow}
                 alt="arrow"
-                className="absolute left-1/2 top-[25rem] md:top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 md:rotate-0 z-10"
+                className="absolute top-[25rem] left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rotate-90 md:top-1/2 md:rotate-0"
               />
               {/* Output */}
               <Phone className="w-60" imgSrc={horse} />
@@ -292,22 +292,22 @@ export default function Home() {
           </div>
 
           {/* Product Features */}
-          <ul className="mx-auto mt-12 w-fit max-w-prose sm:text-lg space-y-2">
+          <ul className="mx-auto mt-12 w-fit max-w-prose space-y-2 sm:text-lg">
             {/* Bullet Points */}
             <li className="w-fit">
-              <Check className="inline h-5 w-5 mr-1.5 text-green-600" />
+              <Check className="mr-1.5 inline h-5 w-5 text-green-600" />
               High-quality silicone material
             </li>
             <li className="w-fit">
-              <Check className="inline h-5 w-5 mr-1.5 text-green-600" />
+              <Check className="mr-1.5 inline h-5 w-5 text-green-600" />
               Scratch- and fingerprint resistant coating
             </li>
             <li className="w-fit">
-              <Check className="inline h-5 w-5 mr-1.5 text-green-600" />
+              <Check className="mr-1.5 inline h-5 w-5 text-green-600" />
               Wireless charging compatible
             </li>
             <li className="w-fit">
-              <Check className="inline h-5 w-5 mr-1.5 text-green-600" />5 year
+              <Check className="mr-1.5 inline h-5 w-5 text-green-600" />5 year
               print warranty
             </li>
 
@@ -320,7 +320,7 @@ export default function Home() {
                 })}
                 href={ROUTES.CONFIGURE_UPLOAD}
               >
-                Create your case now <ArrowRight className="h-4 w-4 ml-1.5" />
+                Create your case now <ArrowRight className="ml-1.5 h-4 w-4" />
               </Link>
             </div>
           </ul>

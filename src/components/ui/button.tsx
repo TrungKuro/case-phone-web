@@ -31,7 +31,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 function Button({
@@ -65,9 +65,9 @@ function Button({
       {isLoading && loadingText ? loadingText : children}
       {isLoading ? (
         <span className="ml-1.5 flex items-center gap-1">
-          <span className="animate-flashing w-1 h-1 bg-white rounded-full inline-block" />
-          <span className="animate-flashing delay-100 w-1 h-1 bg-white rounded-full inline-block" />
-          <span className="animate-flashing delay-200 w-1 h-1 bg-white rounded-full inline-block" />
+          <span className="animate-flashing inline-block h-1 w-1 rounded-full bg-white" />
+          <span className="animate-flashing inline-block h-1 w-1 rounded-full bg-white delay-100" />
+          <span className="animate-flashing inline-block h-1 w-1 rounded-full bg-white delay-200" />
         </span>
       ) : null}
       {/* ... */}

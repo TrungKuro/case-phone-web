@@ -23,16 +23,16 @@ const LoginModal = ({
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogContent className="absolute z-[999999]">
         <DialogHeader>
-          <div className="relative mx-auto mb-2 w-24 h-24">
+          <div className="relative mx-auto mb-2 h-24 w-24">
             <Image fill src={snake} alt="snake" className="object-contain" />
           </div>
         </DialogHeader>
 
-        <DialogTitle className="text-3xl text-center font-bold tracking-tight text-gray-900">
+        <DialogTitle className="text-center text-3xl font-bold tracking-tight text-gray-900">
           Login to continue
         </DialogTitle>
 
-        <DialogDescription className="text-base text-center py-2">
+        <DialogDescription className="py-2 text-center text-base">
           <span className="font-medium text-zinc-900">
             Your configuration was saved!
           </span>{" "}

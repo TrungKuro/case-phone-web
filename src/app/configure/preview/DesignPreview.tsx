@@ -42,15 +42,15 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const colorCase = COLORS.find((whatColor) => whatColor.value === color)?.tw;
   //
   const modelPhone = MODELS.options.find(
-    (whatModel) => whatModel.value === model
+    (whatModel) => whatModel.value === model,
   )?.label;
   //
   const materialCase = MATERIALS.options.find(
-    (whatMaterial) => whatMaterial.value === material
+    (whatMaterial) => whatMaterial.value === material,
   );
   //
   const finishCase = FINISHES.options.find(
-    (whatFinish) => whatFinish.value === finish
+    (whatFinish) => whatFinish.value === finish,
   );
 
   // Tính tổng tiền sản phẩm
@@ -67,10 +67,10 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     },
     onError: () => {
       toast.error(
-        <p className="text-red-400 font-bold">Something went wrong</p>,
+        <p className="font-bold text-red-400">Something went wrong</p>,
         {
           description: "There was an error on our end. Please try again.",
-        }
+        },
       );
     },
   });
@@ -93,7 +93,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   return (
     <>
       {/* Chạy hiệu ứng pháo hoa */}
-      <div className="absolute inset-0 pointer-events-none select-none flex justify-center overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 flex justify-center overflow-hidden select-none">
         <Confetti
           active={showConfetti}
           config={{
@@ -106,9 +106,9 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
       {/* Hiện Dialog bắt buộc đăng nhập khi mua hàng */}
       <LoginModal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} />
 
-      <div className="flex flex-col items-center mt-20 text-sm md:grid sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
+      <div className="mt-20 flex flex-col items-center text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:grid md:gap-x-8 lg:gap-x-12">
         {/* Ảnh Preview sản phẩm */}
-        <div className="md:col-span-4 lg:col-span-3 md:row-span-2 md:row-end-2">
+        <div className="md:col-span-4 md:row-span-2 md:row-end-2 lg:col-span-3">
           <Phone
             className={cn(`bg-${colorCase}`, "max-w-[150px] md:max-w-full")}
             imgSrc={configuration.croppedImageUrl!}
@@ -127,11 +127,11 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
         </div>
 
         {/* Thông tin chi tiết sản phẩm */}
-        <div className="sm:col-span-12 md:col-span-9 text-base">
+        <div className="text-base sm:col-span-12 md:col-span-9">
           <div className="grid grid-cols-1 gap-y-8 border-b border-gray-200 py-8 sm:grid-cols-2 sm:gap-x-6 sm:py-6 md:py-10">
             <div>
               <p className="font-medium text-zinc-950">Highlights</p>
-              <ol className="mt-3 list-disc list-inside text-zinc-700">
+              <ol className="mt-3 list-inside list-disc text-zinc-700">
                 <li>Wireless charging compatible</li>
                 <li>TPU shock absorption</li>
                 <li>Packaging made from recycled materials</li>
@@ -140,7 +140,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
             </div>
             <div>
               <p className="font-medium text-zinc-950">Materials</p>
-              <ol className="mt-3 list-disc list-inside text-zinc-700">
+              <ol className="mt-3 list-inside list-disc text-zinc-700">
                 <li>High-quality, durable material</li>
                 <li>Scratch and fingerprint resistant coating</li>
               </ol>
@@ -159,7 +159,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
            *   ✔ Hữu ích khi dùng trong danh sách, thẻ chứa ảnh, hoặc các layout phức tạp.
            */}
           <div className="mt-8">
-            <div className="bg-gray-50 p-6 sm:p-8 sm:rounded-lg">
+            <div className="bg-gray-50 p-6 sm:rounded-lg sm:p-8">
               <div className="flow-root text-sm">
                 <div className="mt-2 flex items-center justify-between py-1">
                   <p className="text-gray-600">Base price</p>
@@ -200,9 +200,9 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
             <div className="mt-8 flex justify-end pb-12">
               <Button
                 onClick={() => handleCheckout()}
-                className="px-4 sm:px-6 lg:px-8 cursor-pointer"
+                className="cursor-pointer px-4 sm:px-6 lg:px-8"
               >
-                Check out <ArrowRight className="h-4 w-4 ml-1.5 inline" />
+                Check out <ArrowRight className="ml-1.5 inline h-4 w-4" />
               </Button>
             </div>
           </div>
