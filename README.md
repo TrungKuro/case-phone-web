@@ -1,8 +1,125 @@
 # 📱 CaseCobra - Custom Phone Case E-commerce Platform
 
-A modern, full-stack e-commerce web application built with Next.js 15 that allows users to create and order custom phone cases with their own images.
+> A modern, full-stack e-commerce web application built with Next.js 15 that allows users to create and order custom phone cases with their own images.
+>
+> 🙋🏻 _Hi, this is the first web project I learned to practice_ 😆
+>
+> 🥰 Thanks to `joschan21` for sharing a great video [📚 tutorial](https://www.youtube.com/watch?v=SG82Aqcaaa0).
 
 ![CaseCobra Banner](./public/thumbnail.png)
+
+## 🚀 Demo
+
+<p align="center">
+
+| 👉🏻 [**Live Demo**](https://case-phone-web.vercel.app/) | <img src="src/app/favicon.ico" alt="Favicon" width="100" /> |
+| :----------------------------------------------------: | :---------------------------------------------------------: |
+
+</p>
+
+### 🧩 Example Screenshot:
+
+`Preview Page`
+
+  <table>
+    <tr>
+      <td align="center" width="33.33%">
+        <img src="docs/Preview-Page-1.webp" alt="Preview Page 1" width="100%" />
+      </td>
+      <td align="center" width="33.33%">
+        <img src="docs/Preview-Page-2.webp" alt="Preview Page 2" width="100%" />
+      </td>
+      <td align="center" width="33.33%">
+        <img src="docs/Preview-Page-3.webp" alt="Preview Page 3" width="100%" />
+      </td>
+    </tr>
+  </table>
+
+`Landing Page`
+
+  <table>
+    <tr>
+      <td align="center" width="25%">
+        <img src="docs/Landing-Page-1.webp" alt="Landing Page 1" width="100%" />
+      </td>
+      <td align="center" width="25%">
+        <img src="docs/Landing-Page-2.webp" alt="Landing Page 2" width="100%" />
+      </td>
+      <td align="center" width="25%">
+        <img src="docs/Landing-Page-3.webp" alt="Landing Page 3" width="100%" />
+      </td>
+      <td align="center" width="25%">
+        <img src="docs/Landing-Page-4.webp" alt="Landing Page 4" width="100%" />
+      </td>
+    </tr>
+  </table>
+
+`Step Page`
+
+- Step 1: Add Image
+  <table>
+    <tr>
+      <td align="center" width="33.33%">
+        <img src="docs/Step1-1.webp" alt="Step1 1" width="100%" />
+      </td>
+      <td align="center" width="33.33%">
+        <img src="docs/Step1-2.webp" alt="Step1 2" width="100%" />
+      </td>
+      <td align="center" width="33.33%">
+        <img src="docs/Step1-3.webp" alt="Step1 3" width="100%" />
+      </td>
+    </tr>
+  </table>
+- Step 2: Customize design
+  <table>
+    <tr>
+      <td align="center" width="50%">
+        <img src="docs/Step2-1.webp" alt="Step2 1" width="100%" />
+      </td>
+      <td align="center" width="50%">
+        <img src="docs/Step2-2.webp" alt="Step2 2" width="100%" />
+      </td>
+    </tr>
+  </table>
+- Step 3: Summary
+  <table>
+    <tr>
+      <td align="center" width="100%">
+        <img src="docs/Step3-1.webp" alt="Step3 1" width="100%" />
+      </td>
+    </tr>
+  </table>
+
+`Service Page`
+
+| Service       | Image                                                                  |
+| ------------- | ---------------------------------------------------------------------- |
+| Auth Kinde    | <img src="docs/Auth-Kinde.webp" alt="Auth Kinde" width="100%" />       |
+| Pay Link      | <img src="docs/Pay-Link.webp" alt="Pay Link" width="100%" />           |
+| Prisma Studio | <img src="docs/Prisma-Studio.webp" alt="Prisma Studio" width="100%" /> |
+
+`Thank Page`
+
+  <table>
+    <tr>
+      <td align="center" width="33.33%">
+        <img src="docs/Thank-Page-1.webp" alt="Thank Page 1" width="100%" />
+      </td>
+      <td align="center" width="33.33%">
+        <img src="docs/Thank-Page-2.webp" alt="Thank Page 2" width="100%" />
+      </td>
+      <td align="center" width="33.33%">
+        <img src="docs/Thank-Page-3.webp" alt="Thank Page 3" width="100%" />
+      </td>
+    </tr>
+  </table>
+
+`Other Page`
+
+| Page           | Image                                                                    |
+| -------------- | ------------------------------------------------------------------------ |
+| Dashboard Page | <img src="docs/Dashboard-Page.webp" alt="Dashboard Page" width="100%" /> |
+| Admin Page     | <img src="docs/Admin-Page.webp" alt="Admin Page" width="100%" />         |
 
 ## ✨ Features
 
