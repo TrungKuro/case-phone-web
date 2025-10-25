@@ -743,6 +743,22 @@ git push
      - http://localhost:3000
      - https://your-production-domain.com
 
+### 🐞 `useKindeBrowserClient()` trả về `user = false`
+
+**Nguyên nhân:** Component `DesignPreview` là **Client Component** (`"use client"`), nhưng nó được render từ một **Server Component** (`page.tsx` trong preview). Khi Kinde Auth chưa được khởi tạo đúng cách trong Client Component tree, `useKindeBrowserClient` không thể truy cập session.
+
+**Root Cause Analysis:**
+
+1. **Server-Side Rendering Issue:**
+   - File `/src/app/configure/preview/page.tsx` là một **Server Component**
+   - Nó render `<DesignPreview />` (Client Component)
+   - `DesignPreview` sử dụng `useKindeBrowserClient()` để lấy thông tin user
+
+2. **Thiếu KindeProvider:**
+   - Trong `layout.tsx`, bạn chỉ có `<Providers>` (chỉ chứa `QueryClientProvider`)
+   - **KHÔNG có `KindeProvider`** để wrap toàn bộ app
+   - Khi không có `KindeProvider`, `useKindeBrowserClient` không thể truy cập authentication context
+
 ## Các lệnh Git hay dùng
 
 ### Đồng bộ Git trên VsCode theo GitHub
