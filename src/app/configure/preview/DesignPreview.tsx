@@ -18,16 +18,20 @@ import Confetti from "react-dom-confetti";
 import { createCheckoutSession } from "./action";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import LoginModal from "@/components/LoginModal";
 import { LOCAL_STORAGE_KEYS } from "@/constants/localStorage";
+import type { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
-const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
+interface DesignPreviewProps {
+  configuration: Configuration;
+  user: KindeUser<Record<string, unknown>> | null;
+}
+
+const DesignPreview = ({ configuration, user }: DesignPreviewProps) => {
   const router = useRouter();
 
   // Lấy ID của sản phẩm và người dùng
   const { id } = configuration;
-  const { user } = useKindeBrowserClient();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
   // Hiển thị "pháo hoa" 😅

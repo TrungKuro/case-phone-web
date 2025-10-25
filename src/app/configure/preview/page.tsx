@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { notFound } from "next/navigation";
 import DesignPreview from "./DesignPreview";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 interface PageProps {
   searchParams: Promise<{
@@ -21,7 +22,11 @@ const Page = async ({ searchParams }: PageProps) => {
     return notFound();
   }
 
-  return <DesignPreview configuration={configuration} />;
+  // Lấy thông tin user từ server-side session
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
+  return <DesignPreview configuration={configuration} user={user} />;
 };
 
 export default Page;
